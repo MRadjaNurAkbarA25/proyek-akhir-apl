@@ -7,7 +7,12 @@ using namespace std;
 #include <fstream>
 #include <sstream>
 
-vector<Akun> List_Akun;
+string Trim(string s) {
+    if (s.empty()) return s;
+    s.erase(0, s.find_first_not_of(" "));
+    s.erase(0, s.find_last_not_of(" ") + 1);
+    return s;
+}
 
 int Muat_Akun() {
     ifstream file("accounts.csv");
@@ -34,60 +39,99 @@ int Muat_Akun() {
         getline(parser, pw, ',');
         getline(parser, role, ',');
 
-        if (!id.empty()) {
-            List_Akun acc_baru;
-            acc_baru.ID = stoi(id);
-            acc_baru.Username = username;
-            acc_baru.Password  = pw;
-            acc_baru.Role = role;
+        try {
+            if (!id.empty()) {
+                Akun acc_baru;
+                acc_baru.ID = stoi(Trim(id));
+                acc_baru.Username = Trim(username);
+                acc_baru.Password  = Trim(pw);
+                acc_baru.Role = Trim(role);
 
-            accounts.push_back(acc_baru);
-            jumlah++;
+                List_Akun.push_back(acc_baru);
+                jumlah++;
+                }
+            } catch (const exception& e) {
+                continue;
             }
-    }
+        }
+
+    file.close();
     return jumlah;
 }
 
 void Login () {
-    system("cls");                         
-    
+    bool Ketemu = false;
+    string Pilihan;
 
-    while () {
+    system("cls");                         
+    while (true) {
+        cout << "=================================== " << endl;
+        cout << "          Menu Login " << endl;
+        cout << "===================================  " << endl;
         cout << "Username : " << endl;
         cin >> Input_Username;
         cout << "Password : " << endl;
         cin >> Input_Pw;
 
 
-            
-        if (Input_Username !=  || Input_Pw != Pw_Admin) {
-            cout << "Inputan salah !" << endl;
-            system("pause");
+        for (const auto& akun : List_Akun) {
+            if (akun.Username == Input_Username && akun.Password == Input_Pw ) {
+                Ketemu = true;
+                cout << "\n Login Berhasil ! Role : " << akun.Role << endl;
+                system("pause");
+                return;
 
-        } else {
-            break ;
+            }
         }
+
+        if (!Ketemu) {
+            cout << "\n Username atau Password Salah !" << endl;
+            cout << "Coba lagi ? (y/n) ";
+            system("cls");  
+            cin >> Pilihan;
+
+            if (Pilihan != "y") break;
+
+        }
+        
     }  
 }
 
 void Sign_In () {
+    string New_User, New_Pw;
+    bool Ada = false;
+    
     system("cls");                         
     
+        cout << "=================================== " << endl;
+        cout << "         Menu Sign In " << endl;
+        cout << "===================================  " << endl;
+        cout << "Username Baru : " << endl;
+        cin >> New_User;
+        cout << "Password Baru : " << endl;
+        cin >> New_Pw;
 
-    while () {
-        cout << "Username : " << endl;
-        cin >> Input_Username;
-        cout << "Password : " << endl;
-        cin >> Input_Pw;
 
+        for (const auto& akun : List_Akun) {
+            if (akun.Username == New_User ) {
+                cout << "Username sudah ada !" << endl;
+                Ada = true;
+                system("pause");
+                break;
+
+            } else {
+                Akun Baru;
+                Baru.ID = List_Akun.size() + 1;
+                Baru.Username = New_User;
+                Baru.Password = New_Pw;
+                Baru.Role = "player";
+
+                List_Akun.push_back(Baru);
+                cout << "Registrasi Berhasil !" << endl;
+                system("pause");
+            }
 
             
-        if (Input_Username !=  ) {
-            cout << "Username sudah ada !" << endl;
-            system("pause");
-
-        } else {
-            break ;
         }
+        
     }  
-}

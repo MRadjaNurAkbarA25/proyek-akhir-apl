@@ -12,6 +12,8 @@ string Program_Jalan = "y";
 int Pilihan_Login;
 
 int main () {
+    Muat_Akun();
+    
     system("cls");
 
     while (Program_Jalan == "y") {
@@ -77,4 +79,4 @@ int main () {
 
     }
     return 0;
-    }
+}
