@@ -1,4 +1,12 @@
-#include <iostream>
+#include <iostream>    
+#include <fstream>     
+#include <sstream>     
+#include <string>      
+#include <vector>      
+#include <algorithm>   
+#include <iomanip>     
+#include <limits>      
+#include <stdexcept>   
 #include <string>
 using namespace std;
 
@@ -10,6 +18,7 @@ string Input_Username;
 string Input_Pw;
 string Program_Jalan = "y";
 int Pilihan_Login;
+
 
 int main () {
     Muat_Akun();

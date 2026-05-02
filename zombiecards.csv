@@ -1,26 +1,26 @@
 id, name, rarity, cardSet, cost, class, category, tribes, strength, health, traits, effects, desc
-1, cat-lady, super-rare, premium, 1, beastly, zombie, pet, 0, 3, -, -, this gets +3 str this turn when you play a pet
-2, killer-whale, rare, triassic, 2, beastly, zombie, pet, 2, 1, amphibious, fusion, fusion: a zombie played on this gets +2/+1 and amphibious
+1, cat-lady, super-rare, premium, 1, beastly, fighter, pet, 0, 3, -, -, this gets +3 str this turn when you play a pet
+2, killer-whale, rare, triassic, 2, beastly, fighter, pet, 2, 1, amphibious, fusion, fusion: a zombie played on this gets +2/+1 and amphibious
 3, total-eclipse, uncommon, galactic, 2, beastly, environment, -, -1, -1, -, -, plants here get -1/-1
 4, maniacal-laugh, super-rare, premium, 6, beastly, trick, -, -1, -1, frenzy, -, a zombie gets +5/+5 and frenzy
-5, garg-throwing-garg, legendary, triassic, 7, beastly, zombie, pirate|garg, 6, 6, -, make, when hurt: make another random garg in a random lane
-6, zomb-blob, rare, colossal, 3, brainy, zombie, monster, 2, 5, -, evolution, zombie evo: this gets +1 str for each brain you get this turn
+5, garg-throwing-garg, legendary, triassic, 7, beastly, fighter, pirate|gargantuar, 6, 6, -, make, when hurt: make another random garg in a random lane
+6, zomb-blob, rare, colossal, 3, brainy, fighter, monster, 2, 5, -, evolution, zombie evo: this gets +1 str for each brain you get this turn
 7, thinking-cap, event, -, 4, brainy, trick, gourmet, -1, -1, -, conjure, conjure two superpowers
-8, portal-technician, super-rare, premium, 5, brainy, zombie, mustache|science, 5, 4, -, make, when destroyed: make a random zombie here
-9, kitchen-sink-zombie, event, -, 6, brainy, zombie, professional|mustache, 3, 6, bullseye|frenzy|armored-1|overshoot-2|anti-hero-3, -, -
-10, bad-moon-rising, event, -, 7, brainy, trick, -, -1, -1, -, transform, transform all zombies into random zombies that cos 5 or more
-11, mystery-egg, uncommon, colossal, 1, crazy, zombie, gourmet, 0, 2, -, transform, start of tricks: transform into a rnadom zombie that cost 1 or less
-12, zombie-best-friend, super-rare, triassic, 2, crazy, zombie, pet, 2, 1, -, make, when played: make a random zombie that cost 1
-13, gizzard-lizard, rare, colossal, 3, crazy, zombie, pet|monster, 3, 3, -, evolution, zombie evo: do 3 damage to each plant
-14, binary-stars, legendary, galactic, 5, crazy, zombie, dancing, 3, 3, gravestone, -, all your cards do double damage
+8, portal-technician, super-rare, premium, 5, brainy, fighter, mustache|science, 5, 4, -, make, when destroyed: make a random zombie here
+9, kitchen-sink-zombie, event, -, 6, brainy, fighter, professional|mustache, 3, 6, bullseye|frenzy|armored-1|overshoot-2|anti-hero-3, -, -
+10, bad-moon-rising, event, -, 7, brainy, trick, -, -1, -1, -, transform, transform all zombies into random zombies that cost 5 or more
+11, mystery-egg, uncommon, colossal, 1, crazy, fighter, gourmet, 0, 2, -, transform, start of tricks: transform into a random zombie that cost 1 or less
+12, zombie-best-friend, super-rare, triassic, 2, crazy, fighter, pet, 2, 1, -, make, when played: make a random zombie that cost 1
+13, gizzard-lizard, rare, colossal, 3, crazy, fighter, pet|monster, 3, 3, -, evolution, zombie evo: do 3 damage to each plant
+14, binary-stars, legendary, galactic, 5, crazy, fighter, dancing, 3, 3, gravestone, -, all your cards do double damage
 15, the-chickening, rare, premium, 4, crazy, trick, pet, -1, -1, -, -, do 2 damage to each plant
 16, escape-through-time, rare, galactic, 2, hearty, trick, history|science, -1, -1, -, shield|conjure, a zombie gets shield this turn. conjure a history card
-17, team-mascot, common, -, 3, hearty, zombie, sports|imp, 1, 4, -, -, start of turn: all sports get +1/+1
-18, all-stars-zombie, super-rare, premium, 5, hearty, zombie, sports, 4, 6, armored-1|frenzy|untrickable, -, -
-19, undying-pharaoh, legendary, premium, 6, hearty, zombie, history, 4, 6, armored-1, -, your hero's health can't go below 1
+17, team-mascot, common, -, 3, hearty, fighter, sports|imp, 1, 4, -, -, start of turn: all sports get +1/+1
+18, all-stars-zombie, super-rare, premium, 5, hearty, fighter, sports, 4, 6, armored-1|frenzy|untrickable, -, -
+19, undying-pharaoh, legendary, premium, 6, hearty, fighter, history, 4, 6, armored-1, -, your hero's health can't go below 1
 20, monster-mash, rare, premium, 5, hearty, trick, dancing|monster, -1, -1, -, -, all zombies get +2/+2
-21, mini-ninja, common, -, 1, sneaky, zombie, professional|imp, 2, 1, anti-hero-2, -, -
-22, zombot-stomp, rare, premium, 6, sneaky, trick, science|garg, -1, -1, -, bounce, bounce all plants on the ground
-23, laser-base-alpha, super-rare, galactic, 3, sneaky, environment, science, -1, -1, strikethrough|deadly, -, zombies here get deadly and strikthrough
-24, zombot-plank-walker, legendary, premium, 8, sneaky, zombie, science|pirate, 6, 6, strikethrough, make, when played: make two other random pirates in random lanes
+21, mini-ninja, common, -, 1, sneaky, fighter, professional|imp, 2, 1, anti-hero-2, -, -
+22, zombot-stomp, rare, premium, 6, sneaky, trick, science|gargantuar, -1, -1, -, bounce, bounce all plants on the ground
+23, laser-base-alpha, super-rare, galactic, 3, sneaky, environment, science, -1, -1, strikethrough|deadly, -, zombies here get deadly and strikethrough
+24, zombot-plank-walker, legendary, premium, 8, sneaky, fighter, science|pirate, 6, 6, strikethrough, make, when played: make two other random pirates in random lanes
 25, barrel-of-barrels, uncommon, colossal, 2, sneaky, trick, barrel, -1, -1, deadly, conjure, a zombie becomes deadly. conjure a barrel
