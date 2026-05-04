@@ -1,2 +1,23 @@
-id, name, isPlant, class1, class2, sp1, sp2, sp3, sp4
-1, Green Shadow, 1 , Mega-grow, Smarty, 
+id, name, isPlant, class1, sp1, sp2, sp3, sp4
+1, green-shadow, 1 , mega-grow|smarty, 1, 2, 3, 4
+2, solar-flare, 1, kabloom|solar, 5, 6, 7, 8
+3, wall-knight, 1, guardian|solar, 9, 10, 11, 12
+4, chompzilla, 1, mega-grow|solar, 7, 9, 13, 14
+5, spudow, 1, kabloom|guardian, 11, 15, 16, 17
+6, citron, 1, guardian|smarty, 18, 19, 20, 21
+7, grass-knuckles, 1, mega-grow|guardian, 13, 19, 21, 22
+8, nightcap, 1, kabloom|smarty, 2, 6, 15, 23
+9, rose, 1, smarty|solar, 1, 5, 18, 24
+10, captain-combustible, 1,  kabloom|mega-grow, 1, 3, 16, 21, 25
+11, beta-carrotina, 1, guardian|smarty, 26, 27, 28, 29
+12, super-brainz, 0, brainy|sneaky, 30, 31, 32, 33
+13, the-smash, 0, heaty|beastly, 34, 35, 36, 37
+14, impfinity, 0, sneaky|crazy, 32, 38, 39, 40
+15, rustbolt, 0, brainy|hearty, 31, 34, 41, 42
+16, electric-boogaloo, 0, beastly|crazy, 43, 44, 45, 46
+17, brain-freeze, 0, sneaky|beastly, 36, 47, 48, 49
+18, professor-brainstorm, 0, brainy|crazy, 30, 43, 50, 51
+19, immorticia, 0, brainy|beastly, 44, 48, 50, 52
+20, z-mech, 0, hearty|crazy, 39, 41, 45, 53
+21, neptuna, 0, hearty|sneaky, 35, 38, 47, 54
+22, huge-gigantacus, 0, brainy|sneaky, 55, 56, 57, 58
