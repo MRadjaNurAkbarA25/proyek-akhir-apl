@@ -1,59 +1,59 @@
-id, name, class, category, tribes, strength, health, traits, effects, desc, isSignature
-1, big-chill, smarty, trick, -, -1, -1, -, freeze|draw, freeze a zombie. draw a card, 0
-2, whirlwind, smarty, trick, -, -1, -1, -, bounce, bounce a random zombie, 0
-3, embiggen, mega-grow, trick, -, -1, -1, -, -, a plant gets +2/+2, 0
-4, precision-blast, mega-grow|smarty, trick, pea, -1, -1, -, -, attack for 5 damage in the middle lane, 1
-5, weed-whack, solar, trick, root, -1, -1, -, -, a zombie gets -2/-2, 0
-6, more-spore, kabloom, trick, mushroom, -1, -1, -, make, make two button mushrooms in random lanes, 0
-7, scorched-earth, solar, trick, -, -1, -1, -, -, all zombies on the ground get -1/-1, 0
-8, sunburn, kabloom|solar, trick, flower, -1, -1, -, -, do 2 damage. you get +1 sun for the rest of the game, 1
-9, geyser, solar, trick, -, -1, -1, -, heal, heal your hero and all plants for 4, 0
-10, nut-signal, guardian, trick, nut, -1, -1, -, make, make a wall-nut. draw a card, 0
-11, bubble-up, guardian, trick, -, -1, -1, team-up, move, move a plant. it gets +4 hp and team-up, 0
-12, uncrackable, guardian|solar, trick, nut, -1, -1, -, shield, your hero gets shield this turn. draw a card, 1
-13, holo-flora, mega-grow, trick, -, -1, -1, -, draw, draw two cards, 0
-14, devour, mega-grow|solar, trick, flytrap, -1, -1, -, destroy, destroy a zombie with the lowest hp, 1
-15, storm-front, kabloom, trick, -, -1, -1, -, -, all plants get +1/+1, 0
-16, meteor-strike, kabloom, trick, -, -1, -1, -, -, do 3 damage to a zombie, 0
-17, tater-toss, kabloom|guardian, trick, root, -1, -1, -, make, make a hothead, 1
-18, transmogrify, smarty, trick, -, -1, -1, -, transform, transform a zombie into a random zombie that cost 1, 0
-19, root-wall, guardian, trick, root, -1, -1, -, shield, a plant gets +2 hp and shield, 0
-20, peel-shield, guardian|smarty, trick, fruit, -1, -1, -, shield, plants get shield this turn, 1
-21, time-to-shine, mega-grow, trick, -, -1, -1, -, bonus-attack, a plant does a bonus attack, 0
-22, power-pummel, mega-grow, trick, leafy, -1, -1, -, -, attack each zombie on the ground for 2 damage, 1
-23, mush-boom, kabloom|smarty, trick, mushroom, -1, -1, -, make, make a poison mushroom. do 2 damage to a zombie here, 1
-24, goatify, smarty|solar, trick, flower, -1, -1, -, transform, transform a zombie with the highest str into a goat, 1
-25, blazing-bark, kabloom|mega-grow, trick, tree, -1, -1, -, -, a plant gets +4 str, 1
-26, ensign-uproot, guardian, fighter, root, 2, 1, amphibious, move, when played: move another plant or zombie, 0
-27, lieutenant-carrotron, smarty, fighter, root, 2, 1, team-up, conjure, conjure a root, 0
-28, lightspeed-seed, smarty, trick, seed, -1, -1, -, conjure, conjure two tricks, 0
-29, genetic-amplification, guardian|smarty, trick, root, -1, -1, amphibious|team-up, conjure, conjure a plant. it gets +2/+1. amphibious. team-up, 1
-30, telepathy, brainy, trick, -, -1, -1, -, draw, draw two cards, 0
-31, cut-down-to-size, brainy, trick, -, -1, -1, -,  destroy, destroy a plant that has 5 str or more, 0
-32, super-stench, sneaky, trick, -, -1, -1, deadly, draw, all zombies get deadly. draw a card, 0
-33, carried-away, brainy|sneaky, trick, party, -1, -1, -, move|bonus-attack, move a zombie. then it does a bonus attack, 1
-34, heroic-health, hearty, trick, -, -1, -1, -, heal, heal your hero for 6, 0
-35, possessed, hearty, trick, -, -1, -1, frenzy, -, a zombie gets +2 hp and frenzy, 0
-36, galvanize, beastly, trick, -, -1, -1, -, -, a zombie gets +2/+2, 0
-37, slammin-smackdown, hearty|beastly, trick, garg, -1, -1, -, destroy, destroy a plant with 4 str or less, 1
-38, in-crypted, sneaky, trick, -, -1, -1, gravestone, draw, a zombie hides in a gravestone. draw a card, 0
-39, brute-strength, crazy, trick, -, -1, -1, -, -, a zombie gets +3 str, 0
-40, triple-threat, sneaky|crazy, trick, imp, -1, -1, amphibious, make, make two impfinity clones with amphibious in random lanes, 1
-41, rock-wall, hearty, trick, -, -1, -1, -, -, a zombie gets +5 health, 0
-42, shrink-ray, brainy|hearty, trick, science, -1, -1, -, draw, a plant gets -3 hp. draw a card, 1
-43, dance-off, crazy, trick, dancing, -1, -1, -, make, make two backup dancers in random lanes, 0
-44, evaporate, beastly, trick, -, -1, -1, -, destroy|draw, destroy a damaged plant. draw a card, 0
-45, electrobolt, crazy, trick, -, -1, -1, -, -, do 3 damage to a plant, 0
-46, stayin-alive, beastly|crazy, trick, dancing, -1, -1, -, heal, do 3 damage to a plant. heal your hero for 3, 1
-47, dolphinado, sneaky, trick, pet, -1, -1, -, bounce, bounce a random plant, 0
-48, acid-rain, beastly, trick, -, -1, -1, -, -, all plants on the ground get -1/-1, 0
-49, frozen-tundra, sneaky|beastly, trick, pet|monster, -1, -1, -, freeze, freeze all plants, 1
-50, summoning, brainy, trick, -, -1, -1, -, make, make a random zombie that cost 2 or less, 0
-51, eureka, brainy|crazy, trick, mustache|science, -1, -1, -, conjure, conjuree any three cards, 1
-52, witch-familiar, brainy|beastly, trick, pet, -1, -1, -, make, make zomb-bats, 1
-53, missile-madness, hearty|crazy, trick, science imp, -1, -1, -, -, do 3 damage to a plant and 1 damage to all other plants, 1
-54, octo-pult, hearty|sneaky, trick, pet, -1, -1, amphibious|frenzy, make, make an octo-pet with amphibious. frenzy, 1
-55, iron-boarder, brainy, fighter, sports|imp, -1, -1, bullseye, -, while in an envi: this gets +1/+1, 0
-56, teleportation-station, brainy, environment, science, -1, -1, -, -, start of turn: if there's a zombie here gain a teleport, 0
-57, ice-moon, sneaky, environment, -, -1, -1, strikethrough, freeze, zombie here get strikethrough. when played: freeze all plants here, 0
-58, terror-former-10000, brainy|sneaky, trick, science|imp, -1, -1, -, conjure, conjure an environement. all cards in your hand cost 1 less, 1
+id, name, class, category, tribes, strength, health, traits, effects, desc, isSignature, cost
+1, big-chill, smarty, trick, -, -1, -1, -, freeze|draw, freeze a zombie. draw a card, 0, 1
+2, whirlwind, smarty, trick, -, -1, -1, -, bounce, bounce a random zombie, 0, 1
+3, embiggen, mega-grow, trick, -, -1, -1, -, -, a plant gets +2/+2, 0, 1
+4, precision-blast, mega-grow|smarty, trick, pea, -1, -1, -, -, attack for 5 damage in the middle lane, 1, 1
+5, weed-whack, solar, trick, root, -1, -1, -, -, a zombie gets -2/-2, 0, 1
+6, more-spore, kabloom, trick, mushroom, -1, -1, -, make, make two button mushrooms in random lanes, 0, 1
+7, scorched-earth, solar, trick, -, -1, -1, -, -, all zombies on the ground get -1/-1, 0, 1
+8, sunburn, kabloom|solar, trick, flower, -1, -1, -, -, do 2 damage. you get +1 sun for the rest of the game, 1, 1
+9, geyser, solar, trick, -, -1, -1, -, heal, heal your hero and all plants for 4, 0, 1
+10, nut-signal, guardian, trick, nut, -1, -1, -, make, make a wall-nut. draw a card, 0, 1
+11, bubble-up, guardian, trick, -, -1, -1, team-up, move, move a plant. it gets +4 hp and team-up, 0, 1
+12, uncrackable, guardian|solar, trick, nut, -1, -1, -, shield, your hero gets shield this turn. draw a card, 1, 1
+13, holo-flora, mega-grow, trick, -, -1, -1, -, draw, draw two cards, 0, 1
+14, devour, mega-grow|solar, trick, flytrap, -1, -1, -, destroy, destroy a zombie with the lowest hp, 1, 1
+15, storm-front, kabloom, trick, -, -1, -1, -, -, all plants get +1/+1, 0, 1
+16, meteor-strike, kabloom, trick, -, -1, -1, -, -, do 3 damage to a zombie, 0, 1
+17, tater-toss, kabloom|guardian, trick, root, -1, -1, -, make, make a hothead, 1, 1
+18, transmogrify, smarty, trick, -, -1, -1, -, transform, transform a zombie into a random zombie that cost 1, 0, 1
+19, root-wall, guardian, trick, root, -1, -1, -, shield, a plant gets +2 hp and shield, 0, 1
+20, peel-shield, guardian|smarty, trick, fruit, -1, -1, -, shield, plants get shield this turn, 1, 1
+21, time-to-shine, mega-grow, trick, -, -1, -1, -, bonus-attack, a plant does a bonus attack, 0, 1
+22, power-pummel, mega-grow, trick, leafy, -1, -1, -, -, attack each zombie on the ground for 2 damage, 1, 1
+23, mush-boom, kabloom|smarty, trick, mushroom, -1, -1, -, make, make a poison mushroom. do 2 damage to a zombie here, 1, 1
+24, goatify, smarty|solar, trick, flower, -1, -1, -, transform, transform a zombie with the highest str into a goat, 1, 1
+25, blazing-bark, kabloom|mega-grow, trick, tree, -1, -1, -, -, a plant gets +4 str, 1, 1
+26, ensign-uproot, guardian, fighter, root, 2, 1, amphibious, move, when played: move another plant or zombie, 0, 1
+27, lieutenant-carrotron, smarty, fighter, root, 2, 1, team-up, conjure, conjure a root, 0, 1
+28, lightspeed-seed, smarty, trick, seed, -1, -1, -, conjure, conjure two tricks, 0, 1
+29, genetic-amplification, guardian|smarty, trick, root, -1, -1, amphibious|team-up, conjure, conjure a plant. it gets +2/+1. amphibious. team-up, 1, 1
+30, telepathy, brainy, trick, -, -1, -1, -, draw, draw two cards, 0, 1
+31, cut-down-to-size, brainy, trick, -, -1, -1, -,  destroy, destroy a plant that has 5 str or more, 0, 1
+32, super-stench, sneaky, trick, -, -1, -1, deadly, draw, all zombies get deadly. draw a card, 0, 1
+33, carried-away, brainy|sneaky, trick, party, -1, -1, -, move|bonus-attack, move a zombie. then it does a bonus attack, 1, 1
+34, heroic-health, hearty, trick, -, -1, -1, -, heal, heal your hero for 6, 0, 1
+35, possessed, hearty, trick, -, -1, -1, frenzy, -, a zombie gets +2 hp and frenzy, 0, 1
+36, galvanize, beastly, trick, -, -1, -1, -, -, a zombie gets +2/+2, 0, 1
+37, slammin-smackdown, hearty|beastly, trick, garg, -1, -1, -, destroy, destroy a plant with 4 str or less, 1, 1
+38, in-crypted, sneaky, trick, -, -1, -1, gravestone, draw, a zombie hides in a gravestone. draw a card, 0, 1
+39, brute-strength, crazy, trick, -, -1, -1, -, -, a zombie gets +3 str, 0, 1
+40, triple-threat, sneaky|crazy, trick, imp, -1, -1, amphibious, make, make two impfinity clones with amphibious in random lanes, 1, 1
+41, rock-wall, hearty, trick, -, -1, -1, -, -, a zombie gets +5 health, 0, 1
+42, shrink-ray, brainy|hearty, trick, science, -1, -1, -, draw, a plant gets -3 hp. draw a card, 1, 1
+43, dance-off, crazy, trick, dancing, -1, -1, -, make, make two backup dancers in random lanes, 0, 1
+44, evaporate, beastly, trick, -, -1, -1, -, destroy|draw, destroy a damaged plant. draw a card, 0, 1
+45, electrobolt, crazy, trick, -, -1, -1, -, -, do 3 damage to a plant, 0, 1
+46, stayin-alive, beastly|crazy, trick, dancing, -1, -1, -, heal, do 3 damage to a plant. heal your hero for 3, 1, 1
+47, dolphinado, sneaky, trick, pet, -1, -1, -, bounce, bounce a random plant, 0, 1
+48, acid-rain, beastly, trick, -, -1, -1, -, -, all plants on the ground get -1/-1, 0, 1
+49, frozen-tundra, sneaky|beastly, trick, pet|monster, -1, -1, -, freeze, freeze all plants, 1, 1
+50, summoning, brainy, trick, -, -1, -1, -, make, make a random zombie that cost 2 or less, 0, 1
+51, eureka, brainy|crazy, trick, mustache|science, -1, -1, -, conjure, conjuree any three cards, 1, 1
+52, witch-familiar, brainy|beastly, trick, pet, -1, -1, -, make, make zomb-bats, 1, 1
+53, missile-madness, hearty|crazy, trick, science imp, -1, -1, -, -, do 3 damage to a plant and 1 damage to all other plants, 1, 1
+54, octo-pult, hearty|sneaky, trick, pet, -1, -1, amphibious|frenzy, make, make an octo-pet with amphibious. frenzy, 1, 1
+55, iron-boarder, brainy, fighter, sports|imp, -1, -1, bullseye, -, while in an envi: this gets +1/+1, 0, 1
+56, teleportation-station, brainy, environment, science, -1, -1, -, -, start of turn: if there's a zombie here gain a teleport, 0, 1
+57, ice-moon, sneaky, environment, -, -1, -1, strikethrough, freeze, zombie here get strikethrough. when played: freeze all plants here, 0, 1
+58, terror-former-10000, brainy|sneaky, trick, science|imp, -1, -1, -, conjure, conjure an environement. all cards in your hand cost 1 less, 1, 1
