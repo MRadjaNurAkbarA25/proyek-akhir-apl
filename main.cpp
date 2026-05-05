@@ -13,9 +13,12 @@ int Pilihan_Login;
 vector<Akun> List_Akun;
 
 int main () {
-    Muat_Akun();
-    
-    system("cls");
+    int Jumlah = Muat_Akun();
+
+    if (Jumlah == 0) {
+        cout << "Tidak ada data yang di load !" << endl ;
+        system("cls");
+    }
 
     while (Program_Jalan == "y") {
 
