@@ -3,6 +3,7 @@
 
 #include <vector>
 #include <string>
+using namespace std;
 
 struct Akun {
     int ID;
@@ -11,6 +12,26 @@ struct Akun {
     string Role;
 };
 
+const int MAX_CARDS = 500;
+
+// Struct kartu superpower
+struct Superpower {
+    int  id;
+    string name;
+    vector<string> cls;
+    string category;
+    string tribes;
+    int  strength;
+    int  health;
+    string traits;
+    string effects;
+    string desc;
+    int  isSignature;
+    int  cost;
+};
+
+
+// Array konstan untuk Create dan Update kartu
 const string PLANT_CLASS[]   = {"guardian","kabloom","mega-grow","smarty","solar"};
 const string ZOMBIE_CLASS[]  = {"beastly","brainy","crazy","hearty","sneaky"};
 const string CATEGORY[]      = {"fighter","trick","environment"};
@@ -43,7 +64,8 @@ struct Card {
     string   cardClass;   
     string   category;    
     int      cost;
-    int      strength;    
+    int      strength;  
+    int health;  
     string   rarity;
     string   cardSet;     
     CardTags tags;
