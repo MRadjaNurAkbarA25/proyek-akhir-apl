@@ -152,3 +152,55 @@ void saveCardCSV(const string& filename, const vector<Card>& cards) {
     }
     file.close();
 }
+
+string Trim(string s) {
+    if (s.empty()) return s;
+    size_t first = s.find_first_not_of(" \t\r\n");
+
+    if (first == string :: npos) return "";
+
+    size_t last = s.find_last_not_of(" \t\r\n");
+    return s.substr(first, (last - first + 1));
+}
+
+int Muat_Akun() {
+    ifstream file("accounts.csv");
+
+    if (!file.is_open()) {
+        cout << "  [!] File accounts.csv tidak ditemukan.\n";
+        system("pause");
+        return 0;
+        }
+
+    string baris;
+    getline(file, baris);
+    List_Akun.clear();
+
+    while (getline(file, baris)) {
+        if (baris.empty()) continue;
+
+        stringstream parser(baris);
+        string id, username, pw, role;
+        getline(parser, id, ',');
+        getline(parser, username, ',');
+        getline(parser, pw, ',');
+        getline(parser, role, ',');
+
+        if (!id.empty()) {
+            try {
+                Akun acc_baru;
+                acc_baru.ID = stoi(Trim(id));
+                acc_baru.Username = Trim(username);
+                acc_baru.Password  = Trim(pw);
+                acc_baru.Role = Trim(role);
+                List_Akun.push_back(acc_baru);
+
+                } catch (const exception& e) {
+                continue;
+            } 
+            }
+        }
+
+    file.close();
+    return List_Akun.size();
+}

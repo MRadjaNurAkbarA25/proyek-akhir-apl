@@ -11,7 +11,8 @@
 using namespace std;
 
 #include "data.h"
-#include "Auth.h"
+#include "auth.h"
+#include "csv.h"
 
 bool Menu_Login = false;
 string Input_Username;
@@ -20,9 +21,12 @@ string Program_Jalan = "y";
 int Pilihan_Login;
 
 int main () {
-    Muat_Akun();
-    
-    system("cls");
+    int Jumlah = Muat_Akun();
+
+    if (Jumlah == 0) {
+        cout << "Tidak ada data yang di load !" << endl ;
+        system("cls");
+    }
 
     while (Program_Jalan == "y") {
 
