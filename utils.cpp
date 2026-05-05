@@ -122,7 +122,7 @@ void printTable(vector<string> header, vector<vector<string>> rows) {
         cout << "  |";
         for (int i = 0; i < (int)cols.size(); i++) {
             cout << " " << cols[i]
-                 << string(lebar[i] - cols[i].size(), ' ') << " |";
+                << string(lebar[i] - cols[i].size(), ' ') << " |";
         }
         cout << "\n";
     };

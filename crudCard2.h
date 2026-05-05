@@ -11,5 +11,7 @@ void printSuperpowerDetail(Superpower& sp);
 void printCardDetail(Card& c);
 void menuLihat();
 void menuTambah();
+void menuUpdate();
+void menuDelete();
 
 #endif

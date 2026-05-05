@@ -12,8 +12,8 @@ void pilihanAdmin() {
         switch(pilihan) {
             case 1: menuLihat();                          break;
             case 2: menuTambah();                         break;
-            case 3: /* menuEdit()   - belum ada */        break;
-            case 4: /* menuHapus()  - belum ada */        break;
+            case 3: menuUpdate();                         break;
+            case 4: menuDelete();                         break;
             case 5: /* menuCari()   - belum ada */        break;
             case 6: return;
         }
