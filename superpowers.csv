@@ -29,7 +29,7 @@ id, name, class, category, tribes, strength, health, traits, effects, desc, isSi
 28, lightspeed-seed, smarty, trick, seed, -1, -1, -, conjure, conjure two tricks, 0, 1
 29, genetic-amplification, guardian|smarty, trick, root, -1, -1, amphibious|team-up, conjure, conjure a plant. it gets +2/+1. amphibious. team-up, 1, 1
 30, telepathy, brainy, trick, -, -1, -1, -, draw, draw two cards, 0, 1
-31, cut-down-to-size, brainy, trick, -, -1, -1, -,  destroy, destroy a plant that has 5 str or more, 0, 1
+31, cut-down-to-size, brainy, trick, -, -1, -1, -, destroy, destroy a plant that has 5 str or more, 0, 1
 32, super-stench, sneaky, trick, -, -1, -1, deadly, draw, all zombies get deadly. draw a card, 0, 1
 33, carried-away, brainy|sneaky, trick, party, -1, -1, -, move|bonus-attack, move a zombie. then it does a bonus attack, 1, 1
 34, heroic-health, hearty, trick, -, -1, -1, -, heal, heal your hero for 6, 0, 1
@@ -49,11 +49,11 @@ id, name, class, category, tribes, strength, health, traits, effects, desc, isSi
 48, acid-rain, beastly, trick, -, -1, -1, -, -, all plants on the ground get -1/-1, 0, 1
 49, frozen-tundra, sneaky|beastly, trick, pet|monster, -1, -1, -, freeze, freeze all plants, 1, 1
 50, summoning, brainy, trick, -, -1, -1, -, make, make a random zombie that cost 2 or less, 0, 1
-51, eureka, brainy|crazy, trick, mustache|science, -1, -1, -, conjure, conjuree any three cards, 1, 1
+51, eureka, brainy|crazy, trick, mustache|science, -1, -1, -, conjure, conjure any three cards, 1, 1
 52, witch-familiar, brainy|beastly, trick, pet, -1, -1, -, make, make zomb-bats, 1, 1
 53, missile-madness, hearty|crazy, trick, science imp, -1, -1, -, -, do 3 damage to a plant and 1 damage to all other plants, 1, 1
 54, octo-pult, hearty|sneaky, trick, pet, -1, -1, amphibious|frenzy, make, make an octo-pet with amphibious. frenzy, 1, 1
-55, iron-boarder, brainy, fighter, sports|imp, -1, -1, bullseye, -, while in an envi: this gets +1/+1, 0, 1
+55, iron-boarder, brainy, fighter, sports|imp, 2, 3, bullseye, -, while in an envi: this gets +1/+1, 0, 1
 56, teleportation-station, brainy, environment, science, -1, -1, -, -, start of turn: if there's a zombie here gain a teleport, 0, 1
 57, ice-moon, sneaky, environment, -, -1, -1, strikethrough, freeze, zombie here get strikethrough. when played: freeze all plants here, 0, 1
-58, terror-former-10000, brainy|sneaky, trick, science|imp, -1, -1, -, conjure, conjure an environement. all cards in your hand cost 1 less, 1, 1
+58, terror-former-10000, brainy|sneaky, trick, science|imp, -1, -1, -, conjure, conjure an environment. all cards in your hand cost 1 less, 1, 1

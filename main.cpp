@@ -19,7 +19,6 @@ string Input_Pw;
 string Program_Jalan = "y";
 int Pilihan_Login;
 
-
 int main () {
     Muat_Akun();
     
