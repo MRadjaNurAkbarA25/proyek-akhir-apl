@@ -17,4 +17,6 @@ vector<Superpower> loadSuperpowerCSV(const string& filename);
 vector<Card> loadCardCSV(const string& filename, const string& team);
 void saveCardCSV(const string& filename, const vector<Card>& cards);
 
+int Muat_Akun();
+
 #endif

@@ -11,7 +11,8 @@
 using namespace std;
 
 #include "data.h"
-#include "Auth.h"
+#include "auth.h"
+#include "csv.h"
 
 bool Menu_Login = false;
 string Input_Username;
