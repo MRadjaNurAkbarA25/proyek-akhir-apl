@@ -5,6 +5,8 @@ using namespace std;
 
 #include "auth.h"
 #include "data.h"
+#include "menuAdmin.h"
+#include "menuUser.h"
 #include <fstream>
 #include <sstream>
 
@@ -31,9 +33,20 @@ void Login () {
                 Ketemu = true;
                 cout << "\n Login Berhasil ! Role : " << akun.Role << endl;
                 system("pause");
+
+                if (akun.Role == "admin") {
+                    pilihanAdmin();
+                } else {
+                    pilihanUser();
+                }
+
+
+
                 return;
 
             }
+            
+
         }
 
         if (!Ketemu) {
