@@ -13,6 +13,7 @@ void printSuperpowerDetail(Superpower& sp) {
     string clsStr;
     for (int j = 0; j < (int)sp.cls.size(); j++)
         clsStr += (j ? "|" : "") + sp.cls[j];
+
     vector<string> header = {"Field", "Value"};
     vector<vector<string>> rows = {
         {"ID",        to_string(sp.id)},
@@ -154,16 +155,22 @@ void menuTambah() {
     clear();
     string opsiTeam[] = {"Plant", "Zombie", "Kembali"};
     int pilihanTeam = tampilMenu("=== TAMBAH KARTU ===\nPilih tim:", opsiTeam, 3);
+    
     if (pilihanTeam == 3) return;
     string filename = (pilihanTeam == 1) ? "plants.csv" : "zombies.csv";
     string team     = (pilihanTeam == 1) ? "plant"      : "zombie";
     vector<Card> cards = loadCardCSV(filename, team);
+
     Card c;
     c.id   = cards.empty() ? 1 : cards.back().id + 1;
     c.team = team;
+
     clear();
+
     cout << "=== TAMBAH KARTU " << (pilihanTeam == 1 ? "PLANT" : "ZOMBIE") << " ===\n";
+
     c.name = readString("  Nama: ");
+
     if (pilihanTeam == 1) {
         int pilihCls = tampilMenu("  Pilih Class:", PLANT_CLASS, 5);
         c.cardClass  = PLANT_CLASS[pilihCls - 1];
@@ -171,30 +178,44 @@ void menuTambah() {
         int pilihCls = tampilMenu("  Pilih Class:", ZOMBIE_CLASS, 5);
         c.cardClass  = ZOMBIE_CLASS[pilihCls - 1];
     }
+
     int pilihCat = tampilMenu("  Pilih Category:", CATEGORY, 3);
     c.category   = CATEGORY[pilihCat - 1];
+
     int pilihRar = tampilMenu("  Pilih Rarity:", RARITY, 6);
     c.rarity     = RARITY[pilihRar - 1];
+
     int pilihSet = tampilMenu("  Pilih Card Set:", CARD_SET, 5);
+
     c.cardSet    = CARD_SET[pilihSet - 1];
+
     c.cost     = readInt("  Cost     : ");
+
     c.strength = readInt("  Strength (-1 jika tidak ada): ");
+
     c.health   = readInt("  Health   (-1 jika tidak ada): ");
+
     if (pilihanTeam == 1)
         c.tags.tribes = tampilMenuMulti("  Pilih Tribes (0 = selesai):", PLANT_TRIBES, 20);
     else
         c.tags.tribes = tampilMenuMulti("  Pilih Tribes (0 = selesai):", ZOMBIE_TRIBES, 15);
+
     vector<string> traits;
     if (pilihanTeam == 1)
         traits = tampilMenuMulti("  Pilih Traits (0 = selesai):", PLANT_TRAITS, 2);
     else
         traits = tampilMenuMulti("  Pilih Traits (0 = selesai):", ZOMBIE_TRAITS, 4);
+
     vector<string> globalTraits = tampilMenuMulti("  Pilih Global Traits (0 = selesai):", GLOBAL_TRAITS, 8);
     traits.insert(traits.end(), globalTraits.begin(), globalTraits.end());
+
     c.tags.traits = traits;
+
     c.tags.effects = tampilMenuMulti("  Pilih Effects (0 = selesai):", EFFECTS, 15);
+
     c.tags.desc = readString("  Deskripsi (- jika tidak ada): ");
     if (c.tags.desc == "-") c.tags.desc = "";
+
     cards.push_back(c);
     saveCardCSV(filename, cards);
     clear();
@@ -206,57 +227,73 @@ void menuUpdate() {
     clear();
     string opsiTeam[] = {"Plant", "Zombie", "Kembali"};
     int pilihanTeam = tampilMenu("=== UPDATE KARTU ===\nPilih tim:", opsiTeam, 3);
+
     if (pilihanTeam == 3) return;
     string filename = (pilihanTeam == 1) ? "plants.csv" : "zombies.csv";
     string team     = (pilihanTeam == 1) ? "plant"      : "zombie";
     vector<Card> cards = loadCardCSV(filename, team);
+
     if (cards.empty()) {
         cout << "  Tidak ada kartu!\n";
         tungguEnter(); clear(); return;
     }
     clear();
+
     cout << "=== UPDATE KARTU " << (pilihanTeam == 1 ? "PLANT" : "ZOMBIE") << " ===\n";
     vector<string> header = {"No", "Nama", "Class", "Cost", "Rarity"};
     vector<vector<string>> rows;
+
     for (auto& c : cards)
         rows.push_back({
             to_string(c.id), c.name, c.cardClass,
             to_string(c.cost), c.rarity
         });
+
     printTable(header, rows);
     int pilih = readInt("  Pilih ID kartu yang akan diupdate (0 = kembali): ");
     if (pilih == 0) return;
     int idx = -1;
+
     for (int i = 0; i < (int)cards.size(); i++) {
         if (cards[i].id == pilih) { idx = i; break; }
     }
+
     if (idx == -1) {
         cout << "  [!] ID tidak ditemukan.\n";
         tungguEnter(); return;
     }
+
     Card& c = cards[idx];
     clear();
+
     cout << "=== UPDATE KARTU: " << c.name << " ===\n";
     cout << "  (Tekan Enter untuk mempertahankan nilai lama)\n\n";
+
     string input;
     cout << "  Nama [" << c.name << "]: ";
     getline(cin, input);
     if (!input.empty()) c.name = input;
+
     cout << "  Cost saat ini: " << c.cost << "\n";
     int val = readInt("  Cost baru (-999 = skip): ");
     if (val != -999) c.cost = val;
+
     cout << "  Strength saat ini: " << (c.strength == -1 ? "-" : to_string(c.strength)) << "\n";
     val = readInt("  Strength baru (-999 = skip, -1 = tidak ada): ");
     if (val != -999) c.strength = val;
+
     cout << "  Health saat ini: " << (c.health == -1 ? "-" : to_string(c.health)) << "\n";
     val = readInt("  Health baru (-999 = skip, -1 = tidak ada): ");
     if (val != -999) c.health = val;
+
     cout << "  Traits saat ini: ";
     for (int j = 0; j < (int)c.tags.traits.size(); j++)
         cout << (j ? "|" : "") << c.tags.traits[j];
     cout << "\n";
+
     string opsiUbah[] = {"Ya", "Tidak"};
     int ubahTraits = tampilMenu("  Ubah Traits?", opsiUbah, 2);
+
     if (ubahTraits == 1) {
         vector<string> traits;
         if (pilihanTeam == 1)
@@ -267,18 +304,24 @@ void menuUpdate() {
         traits.insert(traits.end(), globalTraits.begin(), globalTraits.end());
         c.tags.traits = traits;
     }
+
     cout << "  Effects saat ini: ";
+
     for (int j = 0; j < (int)c.tags.effects.size(); j++)
         cout << (j ? "|" : "") << c.tags.effects[j];
     cout << "\n";
+
     int ubahEffects = tampilMenu("  Ubah Effects?", opsiUbah, 2);
+
     if (ubahEffects == 1)
         c.tags.effects = tampilMenuMulti("  Pilih Effects baru (0 = selesai):", EFFECTS, 15);
+
     cout << "  Deskripsi saat ini: " << (c.tags.desc.empty() ? "-" : c.tags.desc) << "\n";
     cout << "  Deskripsi baru (Enter = skip, - = hapus): ";
     getline(cin, input);
     if (input == "-")        c.tags.desc = "";
     else if (!input.empty()) c.tags.desc = input;
+
     saveCardCSV(filename, cards);
     clear();
     cout << "  [OK] Kartu berhasil diupdate!\n";
@@ -288,42 +331,54 @@ void menuDelete() {
     clear();
     string opsiTeam[] = {"Plant", "Zombie", "Kembali"};
     int pilihanTeam = tampilMenu("=== HAPUS KARTU ===\nPilih tim:", opsiTeam, 3);
+
     if (pilihanTeam == 3) return;
     string filename = (pilihanTeam == 1) ? "plants.csv" : "zombies.csv";
     string team     = (pilihanTeam == 1) ? "plant"      : "zombie";
     vector<Card> cards = loadCardCSV(filename, team);
+
     if (cards.empty()) {
         cout << "  Tidak ada kartu!\n";
         tungguEnter(); clear(); return;
     }
+
     clear();
+
     cout << "=== HAPUS KARTU " << (pilihanTeam == 1 ? "PLANT" : "ZOMBIE") << " ===\n";
     vector<string> header = {"No", "Nama", "Class", "Cost", "Rarity"};
     vector<vector<string>> rows;
+
     for (auto& c : cards)
         rows.push_back({
             to_string(c.id), c.name, c.cardClass,
             to_string(c.cost), c.rarity
         });
+
     printTable(header, rows);
+
     int pilih = readInt("  Pilih ID kartu yang akan dihapus (0 = kembali): ");
+
     if (pilih == 0) return;
     int idx = -1;
     for (int i = 0; i < (int)cards.size(); i++) {
         if (cards[i].id == pilih) { idx = i; break; }
     }
+    
     if (idx == -1) {
         cout << "  [!] ID tidak ditemukan.\n";
         tungguEnter(); return;
     }
+    
     clear();
     printCardDetail(cards[idx]);
     string opsiKonfirm[] = {"Ya, hapus", "Batal"};
     int konfirm = tampilMenu("  Yakin ingin menghapus kartu ini?", opsiKonfirm, 2);
+    
     if (konfirm == 2) {
         cout << "  [i] Penghapusan dibatalkan.\n";
         tungguEnter(); return;
     }
+
     cards.erase(cards.begin() + idx);
     saveCardCSV(filename, cards);
     clear();

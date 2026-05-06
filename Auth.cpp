@@ -6,9 +6,14 @@ using namespace std;
 #include "auth.h"
 #include "data.h"
 #include "menuAdmin.h"
-#include "menuUser.h"
+#include "menuPlayer.h"
 #include <fstream>
 #include <sstream>
+
+extern vector<Card>  plantCards;
+extern vector<Card>  zombieCards;
+extern vector<Hero>  heroes;
+extern vector<Deck>  decks;
 
 vector<Akun> List_Akun;
 
@@ -37,7 +42,7 @@ void Login () {
                 if (akun.Role == "admin") {
                     pilihanAdmin();
                 } else {
-                    pilihanUser();
+                    pilihanPlayer(decks, heroes, plantCards, zombieCards, akun.ID);
                 }
 
 

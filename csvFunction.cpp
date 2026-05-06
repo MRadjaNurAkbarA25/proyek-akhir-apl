@@ -204,3 +204,126 @@ int Muat_Akun() {
     file.close();
     return List_Akun.size();
 }
+
+vector<Deck> loadDeckCSV(const string& filename) {
+    vector<Deck> result;
+    ifstream file(filename);
+    if (!file.is_open()) {
+        cout << "  [ERROR] Tidak bisa membuka file: " << filename << "\n";
+        return result;
+    }
+
+    string lineStr;
+    getline(file, lineStr); // skip header
+
+    while (getline(file, lineStr)) {
+        if (lineStr.empty()) continue;
+        vector<string> f = parseCSVLine(lineStr);
+        if ((int)f.size() < 6) continue;
+
+        Deck d;
+        d.id          = stoi(f[0]);
+        d.ownerId     = stoi(f[1]);
+        d.deckName    = f[2];
+        d.isPlant = (f[3] == "1");
+        d.heroId      = stoi(f[4]);
+        d.status      = f[5];
+
+        result.push_back(d);
+    }
+
+    file.close();
+    return result;
+}
+
+void loadDeckCardsCSV(const string& filename, vector<Deck>& decks) {
+    ifstream file(filename);
+    if (!file.is_open()) {
+        cout << "  [ERROR] Tidak bisa membuka file: " << filename << "\n";
+        return;
+    }
+
+    string lineStr;
+    getline(file, lineStr); // skip header
+
+    while (getline(file, lineStr)) {
+        if (lineStr.empty()) continue;
+        vector<string> f = parseCSVLine(lineStr);
+        if ((int)f.size() < 3) continue;
+
+        int deckId  = stoi(f[0]);
+        DeckCard dc;
+        dc.cardId   = stoi(f[1]);
+        dc.qty = stoi(f[2]);
+
+        // Cari deck yang sesuai
+        for (auto& d : decks) {
+            if (d.id == deckId) {
+                d.cards.push_back(dc);
+                break;
+            }
+        }
+    }
+
+    file.close();
+}
+
+void saveDeckCSV(const string& filename, const vector<Deck>& decks) {
+    ofstream file(filename);
+    file << "id, ownerId, deckName, isPlantDeck, heroId, status\n";
+    for (auto& d : decks) {
+        file << d.id          << ","
+             << d.ownerId     << ","
+             << d.deckName    << ","
+             << (d.isPlant ? "1" : "0") << ","
+             << d.heroId      << ","
+             << d.status      << "\n";
+    }
+    file.close();
+}
+
+void saveDeckCardsCSV(const string& filename, const vector<Deck>& decks) {
+    ofstream file(filename);
+    file << "deckId, cardId, quantity\n";
+    for (auto& d : decks) {
+        for (auto& dc : d.cards) {
+            file << d.id      << ","
+                 << dc.cardId << ","
+                 << dc.qty << "\n";
+        }
+    }
+    file.close();
+}
+
+vector<Hero> loadHeroCSV(const string& filename) {
+    vector<Hero> result;
+    ifstream file(filename);
+    if (!file.is_open()) {
+        cout << "  [ERROR] Tidak bisa membuka file: " << filename << "\n";
+        return result;
+    }
+
+    string lineStr;
+    getline(file, lineStr); // skip header
+
+    while (getline(file, lineStr)) {
+        if (lineStr.empty()) continue;
+        vector<string> f = parseCSVLine(lineStr);
+        if ((int)f.size() < 8) continue;
+
+        Hero h;
+        h.id      = stoi(f[0]);
+        h.name    = f[1];
+        h.isPlant = (f[2] == "1");
+        h.classes = f[3];          // "mega-grow|smarty"
+        h.superpowerIds[0] = stoi(f[4]);
+        h.superpowerIds[1] = stoi(f[5]);
+        h.superpowerIds[2] = stoi(f[6]);
+        h.superpowerIds[3] = stoi(f[7]);
+
+        result.push_back(h);
+    }
+
+    file.close();
+    return result;
+}
