@@ -1,0 +1,5 @@
+id, ownerId, deckName, isPlantDeck, heroId, status
+1,2,Green Shadow Deck 1,1,1,final
+2,3,Super Brainz Deck 1,0,12,final
+3,2,rose 1,1,9,Draft
+4,2,r,1,1,Draft
