@@ -47,7 +47,7 @@ int main () {
         const string opsi[] = {"Login", "Sign In", "Exit"};
 
         try {
-            Pilihan_Login = tampilMenu("=== Plants vs Zombies Heroes | Deck Builder System ===", opsi, 3);
+            Pilihan_Login = tampilMenu("=== Plants vs Zombies Heroes - Sistem Manajemen Kartu dan Dek", opsi, 3);
 
             switch (Pilihan_Login) {
                 case 1:

@@ -137,18 +137,18 @@ void saveCardCSV(const string& filename, const vector<Card>& cards) {
             effects += (j ? "|" : "") + c.tags.effects[j];
 
         file << c.id                                          << ","
-             << c.name                                        << ","
-             << c.rarity                                      << ","
-             << c.cardSet                                     << ","
-             << (c.cost == -1 ? "-" : to_string(c.cost))     << ","
-             << c.cardClass                                   << ","
-             << c.category                                    << ","
-             << (tribes.empty()  ? "-" : tribes)              << ","
-             << (c.strength == -1 ? "-" : to_string(c.strength)) << ","
-             << "-"                                           << ","
-             << (traits.empty()  ? "-" : traits)              << ","
-             << (effects.empty() ? "-" : effects)             << ","
-             << (c.tags.desc.empty() ? "-" : c.tags.desc)    << "\n";
+            << c.name                                        << ","
+            << c.rarity                                      << ","
+            << c.cardSet                                     << ","
+            << (c.cost == -1 ? "-" : to_string(c.cost))     << ","
+            << c.cardClass                                   << ","
+            << c.category                                    << ","
+            << (tribes.empty()  ? "-" : tribes)              << ","
+            << (c.strength == -1 ? "-" : to_string(c.strength)) << ","
+            << "-"                                           << ","
+            << (traits.empty()  ? "-" : traits)              << ","
+            << (effects.empty() ? "-" : effects)             << ","
+            << (c.tags.desc.empty() ? "-" : c.tags.desc)    << "\n";
     }
     file.close();
 }
@@ -273,11 +273,11 @@ void saveDeckCSV(const string& filename, const vector<Deck>& decks) {
     file << "id, ownerId, deckName, isPlantDeck, heroId, status\n";
     for (auto& d : decks) {
         file << d.id          << ","
-             << d.ownerId     << ","
-             << d.deckName    << ","
-             << (d.isPlant ? "1" : "0") << ","
-             << d.heroId      << ","
-             << d.status      << "\n";
+            << d.ownerId     << ","
+            << d.deckName    << ","
+            << (d.isPlant ? "1" : "0") << ","
+            << d.heroId      << ","
+            << d.status      << "\n";
     }
     file.close();
 }
@@ -288,8 +288,8 @@ void saveDeckCardsCSV(const string& filename, const vector<Deck>& decks) {
     for (auto& d : decks) {
         for (auto& dc : d.cards) {
             file << d.id      << ","
-                 << dc.cardId << ","
-                 << dc.qty << "\n";
+                << dc.cardId << ","
+                << dc.qty << "\n";
         }
     }
     file.close();
