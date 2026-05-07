@@ -11,7 +11,9 @@
 using namespace std;
 
 #include "data.h"
-#include "Auth.h"
+#include "auth.h"
+#include "csv.h"
+#include "utils.h"
 
 bool Menu_Login = false;
 string Input_Username;
@@ -19,72 +21,60 @@ string Input_Pw;
 string Program_Jalan = "y";
 int Pilihan_Login;
 
+vector<Card>  plantCards;
+vector<Card>  zombieCards;
+vector<Hero>  heroes;
+vector<Deck>  decks;
+vector<Superpower> superpowers;
+
 int main () {
-    Muat_Akun();
-    
-    system("cls");
+    int Jumlah = Muat_Akun();
+    plantCards  = loadCardCSV("plants.csv", "plant");
+    zombieCards = loadCardCSV("zombies.csv", "zombie");
+    heroes      = loadHeroCSV("heroes.csv");
+    superpowers = loadSuperpowerCSV("superpowers.csv");
+    decks       = loadDeckCSV("deck.csv");
+    loadDeckCardsCSV("deckCard.csv", decks);
+
+    if (Jumlah == 0) {
+        cout << "  [!] Tidak ada data akun yang di-load!\n";
+        system("pause");
+    }
 
     while (Program_Jalan == "y") {
+        system("cls");
 
-    system("cls");
+        const string opsi[] = {"Login", "Sign In", "Exit"};
 
-    cout << "=================================== " << endl;
-    cout << "         Silahkan Login !" << endl;
-    cout << "===================================  " << endl;
-    cout << " [1]. Login " << endl;
-    cout << " [2]. Sign in " << endl;
-    cout << " [3]. Exit " << endl;
-    cout << "-----------------------------------" << endl; 
+        try {
+            Pilihan_Login = tampilMenu("=== Plants vs Zombies Heroes - Sistem Manajemen Kartu dan Dek", opsi, 3);
 
-    try {
-        cout << "Pilih (1-3) : " << endl;
-        cout << "=================================== " << endl;
-        cin >> Pilihan_Login;
+            switch (Pilihan_Login) {
+                case 1:
+                    Login();
+                    break;
 
-        if (cin.fail()) {
-            throw invalid_argument("Inputan harus berupa angka !");
-        }
+                case 2:
+                    Sign_In();
+                    break;
 
-        if (Pilihan_Login < 0) {
-            throw runtime_error("Bilangan harus bernilai positif !");
-        }
+                case 3:
+                    system("cls");
+                    Program_Jalan = "n";
+                    break;
+            }
 
-    
-        switch (Pilihan_Login) {
-            case 1 : 
-                Login();
-                break;
-
-            case 2 :          
-                Sign_In();
-                break;
-
-            case 3 :            
-                system("cls") ; 
-                Program_Jalan = "n";
-                break; 
-            
-            default : 
-                system("cls"); 
-                cout << "Pilihan Salah !" << endl; 
-                system("pause");
-                break; 
-            } 
-    
-        }
-        
-        catch (const invalid_argument& e) {
+        } catch (const invalid_argument& e) {
             cin.clear();
             cin.ignore(1000, '\n');
-            cout << "Error : " << e.what() << endl;
+            cout << "  Error : " << e.what() << "\n";
+            system("pause");
+
+        } catch (const runtime_error& e) {
+            cout << "  Error : " << e.what() << "\n";
             system("pause");
         }
-
-        catch (const runtime_error& e) {
-            cout << "Error : " << e.what() << endl;
-            system("pause");
-        }
-
     }
+
     return 0;
 }

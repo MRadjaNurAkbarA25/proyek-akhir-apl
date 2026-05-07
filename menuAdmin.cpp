@@ -1,6 +1,7 @@
 #include <iostream>
 #include "crudCard2.h"
 #include "utils.h"
+#include "data.h"
 using namespace std;
 
 void pilihanAdmin() {

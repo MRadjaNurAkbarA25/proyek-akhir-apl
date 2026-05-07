@@ -14,6 +14,15 @@ struct Akun {
 
 const int MAX_CARDS = 500;
 
+// Hero
+struct Hero {
+    int    id;
+    string name;
+    bool   isPlant;
+    string classes;
+    int    superpowerIds[4];
+};
+
 // Struct kartu superpower
 struct Superpower {
     int  id;
@@ -71,10 +80,30 @@ struct Card {
     CardTags tags;
 };
 
+struct DeckCard {
+    int cardId;
+    int qty;
+};
+
+struct Deck {
+    int id;
+    int ownerId;
+    string deckName;
+    bool isPlant;
+    int heroId;
+    string status;
+    vector<DeckCard> cards;
+};
+
 extern vector<Akun> List_Akun;
 extern bool Menu_Login;
 extern string Input_Username;
 extern string Input_Pw;
 extern int Pilihan_Login;
+extern vector<Card>       plantCards;
+extern vector<Card>       zombieCards;
+extern vector<Hero>       heroes;
+extern vector<Deck>       decks;
+extern vector<Superpower> superpowers;
 
 #endif

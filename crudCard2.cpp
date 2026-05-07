@@ -13,6 +13,7 @@ void printSuperpowerDetail(Superpower& sp) {
     string clsStr;
     for (int j = 0; j < (int)sp.cls.size(); j++)
         clsStr += (j ? "|" : "") + sp.cls[j];
+
     vector<string> header = {"Field", "Value"};
     vector<vector<string>> rows = {
         {"ID",        to_string(sp.id)},
@@ -164,6 +165,18 @@ void menuTambah() {
     clear();
     cout << "=== TAMBAH KARTU " << (pilihanTeam == 1 ? "PLANT" : "ZOMBIE") << " ===\n";
     c.name = readString("  Nama: ");
+bool namaSudahAda = false;
+for (int i = 0; i < (int)cards.size(); i++) {
+    if (cards[i].name == c.name) {
+        namaSudahAda = true;
+        break;
+    }
+}
+if (namaSudahAda) {
+    cout << "  [!] Kartu dengan nama \"" << c.name << "\" sudah ada!\n";
+    tungguEnter();
+    return;
+}
     if (pilihanTeam == 1) {
         int pilihCls = tampilMenu("  Pilih Class:", PLANT_CLASS, 5);
         c.cardClass  = PLANT_CLASS[pilihCls - 1];
@@ -201,7 +214,6 @@ void menuTambah() {
     cout << "  [OK] Kartu berhasil ditambahkan!\n";
     tungguEnter();
 }
-
 void menuUpdate() {
     clear();
     string opsiTeam[] = {"Plant", "Zombie", "Kembali"};
@@ -240,8 +252,27 @@ void menuUpdate() {
     cout << "  (Tekan Enter untuk mempertahankan nilai lama)\n\n";
     string input;
     cout << "  Nama [" << c.name << "]: ";
-    getline(cin, input);
-    if (!input.empty()) c.name = input;
+getline(cin, input);
+if (!input.empty()) {
+    if (input == c.name) {
+        cout << "  [!] Nama baru sama dengan nama sebelumnya!\n";
+        tungguEnter();
+        return;
+    }
+    bool namaSudahAda = false;
+    for (int i = 0; i < (int)cards.size(); i++) {
+        if (cards[i].name == input && cards[i].id != c.id) {
+            namaSudahAda = true;
+            break;
+        }
+    }
+    if (namaSudahAda) {
+        cout << "  [!] Kartu dengan nama \"" << input << "\" sudah ada!\n";
+        tungguEnter();
+        return;
+    }
+    c.name = input;
+}
     cout << "  Cost saat ini: " << c.cost << "\n";
     int val = readInt("  Cost baru (-999 = skip): ");
     if (val != -999) c.cost = val;
@@ -284,6 +315,7 @@ void menuUpdate() {
     cout << "  [OK] Kartu berhasil diupdate!\n";
     tungguEnter();
 }
+
 void menuDelete() {
     clear();
     string opsiTeam[] = {"Plant", "Zombie", "Kembali"};
@@ -330,4 +362,3 @@ void menuDelete() {
     cout << "  [OK] Kartu berhasil dihapus!\n";
     tungguEnter();
 }
-
