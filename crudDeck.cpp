@@ -120,18 +120,18 @@ void tambahDek(vector<Deck>& decks, vector<Hero>& heroes,
         return;
     }
 
-    Hero selectedHero = heroes[pilihHero - 1];
+    Hero heroTerpilih = heroes[pilihHero - 1];
 
     // Nama Dek
     string namaDek = readString("  Masukkan Nama Dek: ");
 
     // Filter Class Hero
-    vector<string> heroClasses = splitPipe(selectedHero.classes); // Fungsi splitPipe dari csvFunction.cpp
-    vector<Card>& poolKartu = selectedHero.isPlant ? plants : zombies;
+    vector<string> classHero = splitPipe(heroTerpilih.classes);
+    vector<Card>& poolKartu = heroTerpilih.isPlant ? plants : zombies;
     vector<Card> kartuTersedia;
 
     for (auto& c : poolKartu) {
-        for (auto& cls : heroClasses) {
+        for (auto& cls : classHero) {
             if (c.cardClass == cls) {
                 kartuTersedia.push_back(c);
                 break; 
@@ -144,15 +144,15 @@ void tambahDek(vector<Deck>& decks, vector<Hero>& heroes,
     newDeck.id = (decks.empty()) ? 1 : decks.back().id + 1;
     newDeck.ownerId = ownerId;
     newDeck.deckName = namaDek;
-    newDeck.isPlant = selectedHero.isPlant;
-    newDeck.heroId = selectedHero.id;
+    newDeck.isPlant = heroTerpilih.isPlant;
+    newDeck.heroId = heroTerpilih.id;
 
     int totalKartu = 0;
 
     // Input Kartu
     while (totalKartu < 40) {
         clear();
-        cout << "  Dek: " << namaDek << " | Hero: " << selectedHero.name << "\n";
+        cout << "  Dek: " << namaDek << " | Hero: " << heroTerpilih.name << "\n";
         cout << "  Jumlah Kartu: " << totalKartu << "/40\n\n";
 
         vector<string> headerCard = {"No", "Nama Kartu", "Class", "Cost", "Type"};
@@ -166,33 +166,58 @@ void tambahDek(vector<Deck>& decks, vector<Hero>& heroes,
         printTable(headerCard, rowCard);
     
         cout << "  [0] Selesai & Simpan\n";
-        int pilihK = readInt("  Pilih nomor kartu: ");
-        if (pilihK == 0) break; 
+        int pilihKartu = readInt("  Pilih nomor kartu: ");
+        if (pilihKartu == 0) break; 
 
-        if (pilihK < 1 || pilihK > (int)kartuTersedia.size()) {
+        if (pilihKartu < 1 || pilihKartu > (int)kartuTersedia.size()) {
             cout << "  [!] Nomor tidak valid.\n";
             tungguEnter();
             continue;
         }
 
-        Card cardChoosen = kartuTersedia[pilihK - 1];
+        Card kartuTerpilih = kartuTersedia[pilihKartu - 1];
         int qty = readInt("  Masukkan jumlah (1-4): ");
 
-        // Max 40 kartu per dek
-        if (qty < 1) {
-            cout << "  [!] Minimal 1 jenis kartu.\n";
-            tungguEnter(); continue;
-        }
-        if (totalKartu + qty > 40) {
-            cout << "  [!] Slot tidak cukup (Sisa: " << (40 - totalKartu) << ").\n";
-            tungguEnter(); continue;
+        if (qty < 1 || qty > 4) {
+            cout << "  [!] Masukkan jumlah antara 1-4!\n";
+            tungguEnter();
+            continue;
         }
 
-        // Simpan kartu ke dalam dek
-        newDeck.cards.push_back({cardChoosen.id, qty});
-        totalKartu += qty;
-        cout << "  [+] Berhasil ditambahkan.\n";
-        tungguEnter();
+        if (totalKartu + qty > 40) {
+            cout << "  [!] Slot tidak cukup (Sisa: " << (40 - totalKartu) << ").\n";
+            tungguEnter();
+            continue;
+        }
+
+        bool ketemu = false;
+        for (auto& existingCard : newDeck.cards) {
+            if (existingCard.cardId == kartuTerpilih.id) {
+                if (existingCard.qty + qty > 4) {
+                    cout << "  [!] Kartu '" << kartuTerpilih.name 
+                         << "' sudah ada " << existingCard.qty << " di dek.\n";
+                    cout << "     Maksimal 4 kartu sejenis per dek. Sisa slot: " 
+                         << (4 - existingCard.qty) << "\n";
+                    tungguEnter();
+                    ketemu = true;
+                    break;
+                }
+                existingCard.qty += qty;
+                totalKartu += qty;
+                cout << "  [+] '" << kartuTerpilih.name << "' ditambah " << qty 
+                     << ". Total jenis kartu ini: " << existingCard.qty << "\n";
+                tungguEnter();
+                ketemu = true;
+                break;
+            }
+        }
+        
+        if (!ketemu) {
+            newDeck.cards.push_back({kartuTerpilih.id, qty});
+            totalKartu += qty;
+            cout << "  [+] '" << kartuTerpilih.name << "' ditambahkan (" << qty << " kartu).\n";
+            tungguEnter();
+        }
     }
 
     // Simpan dek
@@ -202,7 +227,8 @@ void tambahDek(vector<Deck>& decks, vector<Hero>& heroes,
     saveDeckCSV("deck.csv", decks);
     saveDeckCardsCSV("deckCard.csv", decks);
     
-    cout << "  [Success] Dek disimpan sebagai " << newDeck.status << "!\n";
+    cout << "  [Success] Dek '" << newDeck.deckName << "' disimpan sebagai " 
+         << newDeck.status << " (" << totalKartu << "/40 kartu)!\n";
     tungguEnter();
     clear();
 }
@@ -210,7 +236,6 @@ void tambahDek(vector<Deck>& decks, vector<Hero>& heroes,
 void hapusKartuDariDek(Deck* d, vector<Card>& plants, vector<Card>& zombies) {
     if (d->cards.empty()) {
         cout << "  [!] Dek ini sudah kosong.\n";
-        tungguEnter();
         return;
     }
 
@@ -251,7 +276,6 @@ void hapusKartuDariDek(Deck* d, vector<Card>& plants, vector<Card>& zombies) {
     d->status = (total == 40) ? "final" : "draft";
 
     cout << "  [-] " << namaTerhapus << " berhasil dihapus dari dek.\n";
-    tungguEnter();
 }
 
 void editDek(vector<Deck>& decks, vector<Hero>& heroes,
@@ -269,8 +293,13 @@ void editDek(vector<Deck>& decks, vector<Hero>& heroes,
     }
 
     if (milikSaya.empty()) {
-        cout << "  [!] Kamu belum memiliki dek untuk diedit.\n";
-        tungguEnter();
+        clear();
+        cout << "=== DEBUG EDIT DEK ===\n";
+        cout << "Total dek di file: " << decks.size() << endl;
+        cout << "OwnerID kamu: " << ownerId << endl;
+        cout << "Pesan: Kamu tidak punya dek.\n";
+        cout << "Tekan ENTER untuk kembali...";
+        cin.get(); // Gunakan cin.get() manual untuk memastikan berhenti
         return;
     }
 
@@ -306,8 +335,8 @@ void editDek(vector<Deck>& decks, vector<Hero>& heroes,
     // Menu Edit
     clear();
     cout << "=== EDIT DEK: " << deckTerpilih->deckName << " ===\n";
-    string opsi[] = {"Ubah Nama Dek","Ubah Isi Kartu","Hapus Isi Kartu"};
-    int subPilih = tampilMenu("", opsi, 3);
+    string opsi[] = {"Ubah Nama Dek","Ubah Isi Kartu","Hapus Isi Kartu","Kembali"};
+    int subPilih = tampilMenu("", opsi, 4);
     switch(subPilih) {
         case 1: {
             string namaBaru = readString("  Masukkan Nama Dek Baru: ");
@@ -317,8 +346,10 @@ void editDek(vector<Deck>& decks, vector<Hero>& heroes,
         }
         case 2: {
             // Edit isi kartu
-            deckTerpilih->cards.clear();
             int totalBaru = 0;
+            for (auto& c : deckTerpilih->cards) {
+                totalBaru += c.qty;
+            }
 
             // Ambil Hero untuk filter class kembali
             Hero* heroRef = nullptr;
@@ -346,43 +377,49 @@ void editDek(vector<Deck>& decks, vector<Hero>& heroes,
                 printTable(hK, rK);
 
                 cout << "  [0] Selesai & Simpan\n";
-                int kPilih = readInt("  Pilih nomor kartu: ");
-                if (kPilih == 0) break;
+                int kartuPilih = readInt("  Pilih nomor kartu: ");
+                if (kartuPilih == 0) break;
                 
-                if (kPilih < 1 || kPilih > (int)tersedia.size()) {
+                if (kartuPilih < 1 || kartuPilih > (int)tersedia.size()) {
                     cout << "  [!] Nomor tidak valid.\n";
-                    tungguEnter();
-                    continue;
+                    tungguEnter(); continue;
                 }
 
                 int qty = readInt("  Masukkan jumlah: ");
+                if (qty < 1 || qty > 4) {
+                    cout << " [!] Minimal 1 kartu dan max 4 kartu!\n";
+                    tungguEnter(); continue;
+
+                }
                 if (totalBaru + qty > 40) {
                     cout << "  [!] Slot tidak cukup!\n";
                     tungguEnter(); continue;
                 }
 
                 // Cek duplikat
-                bool found = false;
+                bool ketemu = false;
                 for (auto& existingCard : deckTerpilih->cards) {
-                    if (existingCard.cardId == tersedia[kPilih-1].id) {
+                    if (existingCard.cardId == tersedia[kartuPilih-1].id) {
                         if (existingCard.qty + qty > 4) {
                             cout << "  [!] Maksimal 4 kartu sejenis per dek.\n";
-                            tungguEnter();
-                            found = true;
+                            ketemu = true;
                             break;
                         }
                         existingCard.qty += qty;
-                        found = true;
+                        totalBaru += qty;
+                        cout << "  [+] '" << tersedia[kartuPilih-1].name << "' ditambah " << qty 
+                             << ". Total jenis ini: " << existingCard.qty << "\n";
+                        ketemu = true;
                         break;
                     }
                 }
                 
-                if (!found) {
-                    deckTerpilih->cards.push_back({tersedia[kPilih-1].id, qty});
+                if (!ketemu) {
+                    deckTerpilih->cards.push_back({tersedia[kartuPilih-1].id, qty});
+                    totalBaru += qty;
+                    cout << "  [+] '" << tersedia[kartuPilih-1].name << "' ditambahkan (" << qty << " kartu).\n";
                 }
                 
-                totalBaru += qty;
-                cout << "  [+] Berhasil ditambahkan.\n";
                 tungguEnter();
             }
             deckTerpilih->status = (totalBaru == 40) ? "Ready" : "Draft";
@@ -392,6 +429,7 @@ void editDek(vector<Deck>& decks, vector<Hero>& heroes,
         case 3: {
             hapusKartuDariDek(deckTerpilih, plants, zombies); break;
         }
+        case 4: break; 
     }
 
     // Simpan Perubahan ke CSV
