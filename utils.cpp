@@ -48,7 +48,13 @@ int linearSearchID(Superpower cards[], int count, int id) {
 
 void tungguEnter() {
     cout << "\n  Tekan Enter untuk melanjutkan...";
-    cin.ignore(numeric_limits<streamsize>::max(), '\n');
+    cin.clear();
+    // Jika ada sisa input dari cin >> ..., buang dulu sampai newline.
+    if (cin.rdbuf()->in_avail() > 0) {
+        cin.ignore(numeric_limits<streamsize>::max(), '\n');
+    }
+    string dummy;
+    getline(cin, dummy);
 }
 
 #ifdef _WIN32
