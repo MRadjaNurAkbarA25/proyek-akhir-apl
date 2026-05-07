@@ -1,5 +1,5 @@
 id,name,rarity,cardSet,cost,class,category,tribes,strength,health,traits,effects,desc
-1,jugger-nut,super-rare,premium,3,guardian,fighter,nut,2,3,bullseye|armored-1|team-up,-,-
+1,jugger-nut,super-rare,premium,3,guardian,fighter,nut,2,-,bullseye|armored-1|team-up,-,-
 2,smackadamia,rare,premium,5,guardian,fighter,nut,4,-,amphibious,-,when played: all nuts get +2 hp
 3,photosynthesizer,uncommon,galactic,1,guardian,trick,-,-,-,-,conjure,a plant gets +2 hp. conjure a card
 4,poppin-poppies,legendary,premium,6,guardian,fighter,flower,4,-,-,make,when played: make lil buddies here and next door

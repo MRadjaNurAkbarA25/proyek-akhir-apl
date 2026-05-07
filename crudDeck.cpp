@@ -21,8 +21,8 @@ string getNamaKartu(vector<Card>& plants, vector<Card>& zombies,
 }
 
 void lihatDek(vector<Deck>& decks, vector<Hero>& heroes,
-              vector<Card>& plants, vector<Card>& zombies,
-              int ownerId) {
+            vector<Card>& plants, vector<Card>& zombies,
+            int ownerId) {
     clear();
     while (true) {
         clear();
@@ -93,8 +93,8 @@ void lihatDek(vector<Deck>& decks, vector<Hero>& heroes,
 }
 
 void tambahDek(vector<Deck>& decks, vector<Hero>& heroes,
-              vector<Card>& plants, vector<Card>& zombies,
-              int ownerId) {
+            vector<Card>& plants, vector<Card>& zombies,
+            int ownerId) {
     clear();
     cout << "=== BUAT DEK BARU ===\n";
 
@@ -195,9 +195,9 @@ void tambahDek(vector<Deck>& decks, vector<Hero>& heroes,
             if (existingCard.cardId == kartuTerpilih.id) {
                 if (existingCard.qty + qty > 4) {
                     cout << "  [!] Kartu '" << kartuTerpilih.name 
-                         << "' sudah ada " << existingCard.qty << " di dek.\n";
+                        << "' sudah ada " << existingCard.qty << " di dek.\n";
                     cout << "     Maksimal 4 kartu sejenis per dek. Sisa slot: " 
-                         << (4 - existingCard.qty) << "\n";
+                        << (4 - existingCard.qty) << "\n";
                     tungguEnter();
                     ketemu = true;
                     break;
@@ -205,7 +205,7 @@ void tambahDek(vector<Deck>& decks, vector<Hero>& heroes,
                 existingCard.qty += qty;
                 totalKartu += qty;
                 cout << "  [+] '" << kartuTerpilih.name << "' ditambah " << qty 
-                     << ". Total jenis kartu ini: " << existingCard.qty << "\n";
+                    << ". Total jenis kartu ini: " << existingCard.qty << "\n";
                 tungguEnter();
                 ketemu = true;
                 break;
@@ -228,7 +228,7 @@ void tambahDek(vector<Deck>& decks, vector<Hero>& heroes,
     saveDeckCardsCSV("deckCard.csv", decks);
     
     cout << "  [Success] Dek '" << newDeck.deckName << "' disimpan sebagai " 
-         << newDeck.status << " (" << totalKartu << "/40 kartu)!\n";
+        << newDeck.status << " (" << totalKartu << "/40 kartu)!\n";
     tungguEnter();
     clear();
 }
@@ -279,8 +279,8 @@ void hapusKartuDariDek(Deck* d, vector<Card>& plants, vector<Card>& zombies) {
 }
 
 void editDek(vector<Deck>& decks, vector<Hero>& heroes,
-             vector<Card>& plants, vector<Card>& zombies,
-             int ownerId) {
+            vector<Card>& plants, vector<Card>& zombies,
+            int ownerId) {
     // clear();
     
     decks = loadDeckCSV("deck.csv");
@@ -408,7 +408,7 @@ void editDek(vector<Deck>& decks, vector<Hero>& heroes,
                         existingCard.qty += qty;
                         totalBaru += qty;
                         cout << "  [+] '" << tersedia[kartuPilih-1].name << "' ditambah " << qty 
-                             << ". Total jenis ini: " << existingCard.qty << "\n";
+                            << ". Total jenis ini: " << existingCard.qty << "\n";
                         ketemu = true;
                         break;
                     }
