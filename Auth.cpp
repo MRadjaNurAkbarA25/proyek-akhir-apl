@@ -60,6 +60,30 @@ void Login () {
     }  
 }
 
+void Simpan_Akun(const string& filename, const vector<Akun>& Regis_Akun) {
+    ofstream file(filename);
+
+    if (!file.is_open()) {
+        cout << "[!] Gagal membuka file ! " << filename << " untuk menyimpan.\n"; 
+        return;
+    }
+
+    file << "id, username, password, role\n";
+
+        for (int i = 0; i < (int)Regis_Akun.size(); i++) {
+            const Akun& acc = Regis_Akun[i];
+
+        file << acc.ID << ","
+            << acc.Username << ","
+            << acc.Password << ","
+            << acc.Role << "\n";
+        }
+
+        cout << "Registrasi berhasil ! " << endl;
+
+    file.close();
+}
+
 void Sign_In () {
     string New_User, New_Pw;
     bool Ada = false;
@@ -70,10 +94,9 @@ void Sign_In () {
     cout << "         Menu Sign In " << endl;
     cout << "===================================  " << endl;
     cout << "Username Baru : " << endl;
-    cin >> New_User;
+    getline(cin, New_User);
     cout << "Password Baru : " << endl;
-    cin >> New_Pw;
-    cin.ignore(1000, '\n');
+    getline(cin, New_Pw);
 
 
     for (const auto& akun : List_Akun) {
@@ -95,7 +118,10 @@ void Sign_In () {
         Baru.Role = "player";
 
         List_Akun.push_back(Baru);
-        cout << "Registrasi Berhasil !" << endl;
+        Simpan_Akun("accounts.csv", List_Akun);
         system("pause");
     }
 }
+
+
+

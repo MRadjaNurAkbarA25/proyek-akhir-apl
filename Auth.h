@@ -10,5 +10,6 @@ using namespace std ;
 
 void Login();
 void Sign_In();
+void Regis_Akun();
 
 #endif
