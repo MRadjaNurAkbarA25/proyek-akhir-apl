@@ -25,9 +25,9 @@ void pilihanPlayer(vector<Deck>& decks, vector<Hero>& heroes,
             case 3: {
                 cout << "jalan\n";
                 editDek(decks, heroes, plants, zombies, ownerId);
-                decks = loadDeckCSV("deck.csv");
-                loadDeckCardsCSV("deckCard.csv", decks);
-                tungguEnter();
+                // decks = loadDeckCSV("deck.csv");
+                // loadDeckCardsCSV("deckCard.csv", decks);
+                // tungguEnter();
                 break;
             }
             case 4: {

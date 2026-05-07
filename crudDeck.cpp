@@ -257,6 +257,7 @@ void hapusKartuDariDek(Deck* d, vector<Card>& plants, vector<Card>& zombies) {
 void editDek(vector<Deck>& decks, vector<Hero>& heroes,
              vector<Card>& plants, vector<Card>& zombies,
              int ownerId) {
+    cout << "ada";
     // clear();
     
     decks = loadDeckCSV("deck.csv");
