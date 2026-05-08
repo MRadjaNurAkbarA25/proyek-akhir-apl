@@ -19,9 +19,10 @@ id,name,rarity,cardSet,cost,class,category,tribes,strength,health,traits,effects
 18,rotobaga,super-rare,triassic,2,smarty,fighter,root,2,-,amphibious,-,this attacks both lanes next door instead of this lane
 19,shooting-starfruit,legendary,galactic,5,smarty,fighter,fruit,2,-,-,-,this attacks in all five lanes
 20,cosmic-bean,rare,galactic,2,smarty,fighter,bean,1,-,team-up,conjure,when played: conjure a bean. it gets team-up
-21,syifa,super-rare,premium,3,solar,trick,-,-,-,-,heal|draw,heal 4. draw a card
-22,astrocado,legendary,galactic,5,solar,fighter,fruit,5,-,strikethrough,-,when destroyed: gain an astrocado pit
-23,cornucopia,legendary,premium,9,solar,fighter,corn|fruit,6,-,-,make,when played: make a random plant in each other lane
-24,sunflower,common,-,1,solar,fighter,flower,0,-,team-up,-,start of turn: you get +1 sun this turn
-25,solar-winds,super-rare,galactic,3,solar,environment,-,-,-,-,make,end of turn: make a sunflower here
-26,aloesaurus,legendary,triassic,5,solar,fighter,cactus|animal,4,-,-,dino-roar|heal,dino-roar: heal all plants and plant hero for 1
+21,astrocado,legendary,galactic,5,solar,fighter,fruit,5,-,strikethrough,-,when destroyed: gain an astrocado pit
+22,cornucopia,legendary,premium,9,solar,fighter,corn|fruit,6,-,-,make,when played: make a random plant in each other lane
+23,sunflower,common,-,1,solar,fighter,flower,0,-,team-up,-,start of turn: you get +1 sun this turn
+24,solar-winds,super-rare,galactic,3,solar,environment,-,-,-,-,make,end of turn: make a sunflower here
+25,aloesaurus,legendary,triassic,5,solar,fighter,cactus|animal,4,-,-,dino-roar|heal,dino-roar: heal all plants and plant hero for 1
+26,e,rare,colossal,3,guardian,trick,-,2,-,-,-,-
+27,g,uncommon,premium,2,kabloom,trick,mushroom,2,-,-,-,-

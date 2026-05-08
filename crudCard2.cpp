@@ -196,7 +196,7 @@ void Merge_Sort_Rarity_Asc(vector<Card>& Cards, int l, int m, int r) {
 
     while (j < n2) {
         Cards[k] = R[j] ;
-        i++;
+        j++;
         k++;
     }
 }

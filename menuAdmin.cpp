@@ -8,7 +8,7 @@ void pilihanAdmin() {
     while (true) {
         clear();
         string opsi[] = {"Lihat kartu","Buat kartu","Edit kartu",
-                        "Hapus kartu","Cari kartu","Kembali"};
+                        "Hapus kartu","Cari kartu","Log-out"};
         int pilihan = tampilMenu("=== MENU ADMIN ===", opsi, 6);
         switch(pilihan) {
             case 1: menuLihat();                          break;

@@ -16,7 +16,7 @@ void pilihanPlayer(vector<Deck>& decks, vector<Hero>& heroes,
             "Edit dek",
             "Hapus dek",
             "Lihat kartu",
-            "Kembali"
+            "Log-out"
         };
         int pilihan = tampilMenu("=== MENU PLAYER ===", opsi, 6);
         switch (pilihan) {
