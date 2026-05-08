@@ -138,16 +138,174 @@ void superpowersReview() {
     }
 }
 
+int Rarity (string r) {
+    if (r == "common") return 1;
+    if (r == "uncommon") return 2;
+    if (r == "rare") return 3;
+    if (r == "super-rare") return 4;
+    if (r == "legendary") return 5;
+
+    return 0;
+}
+
+// Fungsi Sorting ---------------------------------------------
+
+void Sort_Selection_Cost_Asc(vector<Card>& Cards) {
+    int n = Cards.size();
+    for (int i = 0 ; i < n - 1 ; i++) {
+        int indeksMin = i ;
+
+    for (int j = i + 1 ; j < n ; j++) {
+        if (Cards[j].cost < Cards[indeksMin].cost) {
+            indeksMin = j ;
+        }
+    }
+
+    if (indeksMin != i) {
+        swap(Cards[i], Cards[indeksMin]) ;
+        }
+    }
+}
+
+void Merge_Sort_Rarity_Asc(vector<Card>& Cards, int l, int m, int r) {
+    int n1 = m - l + 1 ; 
+    int n2 = r - m ; 
+    vector<Card> L, R;
+
+    for (int i = 0; i < n1; i++) L.push_back (Cards[l + i]);
+    for (int j = 0; j < n2; j++) R.push_back (Cards[m + 1+ j]);
+
+    int i = 0, j = 0, k = l;
+    while (i < n1 && j < n2) {
+        if (Rarity(L[i].rarity) <= Rarity(R[j].rarity)) {
+            Cards[k] = L[i] ;
+            i++ ;
+        } else {
+            Cards[k] = R[j] ;
+            j++ ;
+        }
+
+    k++ ;
+    }
+
+    while (i < n1) {
+        Cards[k] = L[i] ;
+        i++;
+        k++;
+    }
+
+    while (j < n2) {
+        Cards[k] = R[j] ;
+        i++;
+        k++;
+    }
+}
+
+void Merge_Sort_Rarity(vector<Card>& Cards, int l, int r) {
+    if (l < r) {
+
+        int m = l + (r - l) / 2 ;
+
+        Merge_Sort_Rarity(Cards, l, m) ;
+        Merge_Sort_Rarity(Cards, m + 1, r) ;
+
+        Merge_Sort_Rarity_Asc(Cards, l, m, r) ;
+    }
+}
+
+void Quick_Sort_Class_Asc(vector<Card>& Cards, int low, int high) {
+    if (low >= high) return ;
+
+    int mid = low + (high - low) / 2 ;
+    string pivot = Cards[mid].cardClass ;
+    int i = low, j = high ;
+
+    while (i <= j) {
+        while (Cards[i].cardClass > pivot) {
+            i++ ;
+        }
+
+        while (Cards[j].cardClass < pivot) {
+            j-- ;
+        }
+
+        if (i <= j) {
+            swap(Cards[i], Cards[j]) ;
+            i++ ;
+            j-- ;
+        }
+    }
+
+    if (low < j) {
+        Quick_Sort_Class_Asc(Cards, low, j) ;
+    }
+
+    if (i < high) {
+        Quick_Sort_Class_Asc(Cards, i, high) ;
+    }
+}
+
 void menuLihat() {
     while (true) {
         clear();
+
         string opsi[] = {"Non-superpower", "Superpower", "Kembali"};
-        int pilihan = tampilMenu("Pilih jenis kartu:", opsi, 3);
-        switch (pilihan) {
-            case 1: allCardsReview();    break;
-            case 2: superpowersReview(); break;
-            case 3: return;
+        int Pilihan_Jenis = tampilMenu("Pilih jenis kartu:", opsi, 3);
+
+        if (Pilihan_Jenis == 3) return;
+        if (Pilihan_Jenis == 2) {
+            superpowersReview();
+            continue;
         }
+
+        clear();
+        string Opsi_Tim[] = {"Plants", "Zombie", "Kembali"};
+        int Pilihan_Tim = tampilMenu("Pilih Tim :", Opsi_Tim, 3);
+
+        if (Pilihan_Tim == 3) continue;
+
+        string filename = (Pilihan_Tim == 1) ? "plants.csv" : "zombies.csv";
+        string tim     = (Pilihan_Tim == 1) ? "plant"      : "zombie";
+        vector<Card> cards = loadCardCSV(filename, tim);
+
+        if (cards.empty()) {
+            cout << " Tidak ada data kartu ! \n";
+            system("pause");
+            continue;
+        }
+
+        clear();
+        string Opsi_Sort[] = {"Cost", "Class", "Rarity", "Kembali"};
+        int Pilihan_Sort = tampilMenu("Sorting ASC berdasarkan : ", Opsi_Sort, 4);
+
+        if (Pilihan_Sort == 4) return;
+
+        switch (Pilihan_Sort) {
+            case 1 : 
+                Sort_Selection_Cost_Asc(cards); 
+                break;
+            
+            case 2 : 
+                Quick_Sort_Class_Asc(cards, 0, cards.size() - 1); 
+                break;
+
+            case 3 : 
+            Merge_Sort_Rarity(cards, 0, cards.size() - 1); 
+            break;
+        }
+
+        clear();
+        cout << "Hasil Sorting " << (Pilihan_Tim == 1 ? "plant" : "zombie") << "(ASC) \n";
+
+        vector<string> header = {"ID", "Nama", "Class", "Cost", "Rarity"};
+        vector <vector<string>> rows;
+
+        for (auto& c : cards) {
+            rows.push_back({to_string(c.id), c.name, c.cardClass, to_string(c.cost), c.rarity});
+        }
+
+        printTable(header, rows);
+        system("pause");
     }
 }
 
