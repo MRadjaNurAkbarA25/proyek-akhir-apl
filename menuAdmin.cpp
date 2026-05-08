@@ -15,7 +15,7 @@ void pilihanAdmin() {
             case 2: menuTambah();                         break;
             case 3: menuUpdate();                         break;
             case 4: menuDelete();                         break;
-            case 5: /* menuCari()   - belum ada */        break;
+            case 5: menuSearch();                         break;
             case 6: return;
         }
     }

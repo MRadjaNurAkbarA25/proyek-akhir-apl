@@ -520,3 +520,76 @@ void menuDelete() {
     cout << "  [OK] Kartu berhasil dihapus!\n";
     tungguEnter();
 }
+
+/// FUNGSI SEARCHING ----------
+int Cari_Nama_Linear (vector<Card>& Cards, int Panjang, string Target) {
+    for (int i = 0 ; i < Panjang ; i++) {
+        if (Cards[i].name == Target) {
+            return i ;
+            break ;
+            }
+        }
+
+    return -1 ; 
+}
+
+void Menu_Cari_Nama (vector<Card>& Cards, int Panjang) {
+    string Target ;
+    system("cls") ;
+
+    if (Panjang == 0) {
+        cout << "Data masih kosong" ;
+        system("pause") ;
+        return ;
+    }
+
+    cout << "=================================== " << endl ;
+    cout << "            CARI NAMA       " << endl ;
+    cout << "=================================== " << endl ;
+    cout << "Masukan Nama yang ingin dicari : " ; cin >> Target ;
+    
+    int Hasil = Cari_Nama_Linear(Cards, Panjang, Target) ;
+
+    if (Hasil != -1) {
+        system("cls") ;
+        cout << "Nama ditemukan !" << endl ;
+        cout << "------------------------------" << endl ;
+        cout << " ID : " << Cards[Hasil].id << endl ;
+        cout << " Nama : " << Cards[Hasil].name << endl ;
+        cout << " Rarity : " <<Cards[Hasil].rarity << endl ;
+        cout << " Class : " << Cards[Hasil].cardClass << endl ;
+        cout << " Kategori : " << Cards[Hasil].category << endl ;
+
+        system("pause") ;
+
+    } else {
+        cout << "Nama tidak ditemukan dalam data ! " << endl ;
+        system("pause") ;
+    }
+}
+
+void menuSearch() {
+    while (true) {
+        clear();
+
+        string opsi[] = {"Plants", "Zombie", "Kembali"};
+        int Pilih_Tim_Search = tampilMenu("Pilih tim yang ingin dicari :", opsi, 3);
+
+        if (Pilih_Tim_Search == 3) return;
+
+        string filename = (Pilih_Tim_Search == 1) ? "plants.csv" : "zombies.csv";
+        string tim     = (Pilih_Tim_Search == 1) ? "plant"      : "zombie";
+        vector<Card> cards = loadCardCSV(filename, tim);
+
+        if (cards.empty()) {
+            cout << " Tidak ada data kartu ! \n";
+            system("pause");
+            continue;
+        }
+
+        clear();
+
+        Menu_Cari_Nama(cards, cards.size());
+
+    }
+}

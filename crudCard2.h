@@ -13,5 +13,8 @@ void menuLihat();
 void menuTambah();
 void menuUpdate();
 void menuDelete();
+int Cari_Nama_Linear(vector<Card>& Cards, int Panjang, string Target);
+void Menu_Cari_Nama(vector<Card>& Cards, int Panjang);
+void menuSearch();
 
 #endif
