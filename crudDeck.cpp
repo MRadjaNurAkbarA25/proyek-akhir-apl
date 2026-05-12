@@ -129,6 +129,7 @@ void tambahDek(vector<Deck>& decks, vector<Hero>& heroes,
     vector<string> classHero = splitPipe(heroTerpilih.classes);
     vector<Card>& poolKartu = heroTerpilih.isPlant ? plants : zombies;
     vector<Card> kartuTersedia;
+    
 
     for (auto& c : poolKartu) {
         for (auto& cls : classHero) {
@@ -154,7 +155,22 @@ void tambahDek(vector<Deck>& decks, vector<Hero>& heroes,
         clear();
         cout << "  Dek: " << namaDek << " | Hero: " << heroTerpilih.name << "\n";
         cout << "  Jumlah Kartu: " << totalKartu << "/40\n\n";
+        
+        cout << "=== ISI DEK SAAT INI ===\n";
+        if (newDeck.cards.empty()) {
+            cout << "  (Dek masih kosong)\n\n";
+        } else {
+            vector<string> hIsi = {"ID", "Nama Kartu", "Qty"};
+            vector<vector<string>> rIsi;
+            for (auto& dc : newDeck.cards) {
+                string nama = getNamaKartu(plants, zombies, dc.cardId, newDeck.isPlant);
+                rIsi.push_back({to_string(dc.cardId), nama, to_string(dc.qty)});
+            }
+            printTable(hIsi, rIsi);
+            cout << "\n";
+        }
 
+        cout << "=== KARTU TERSEDIA ===\n";
         vector<string> headerCard = {"No", "Nama Kartu", "Class", "Cost", "Type"};
         vector<vector<string>> rowCard;
         for (int i = 0; i < (int)kartuTersedia.size(); i++) {
@@ -369,6 +385,21 @@ void editDek(vector<Deck>& decks, vector<Hero>& heroes,
                 cout << "  Mengisi Ulang Dek: " << deckTerpilih->deckName << "\n";
                 cout << "  Jumlah Kartu: " << totalBaru << "/40\n\n";
 
+                cout << "=== ISI DEK SAAT INI ===\n";
+                if (deckTerpilih->cards.empty()) {
+                    cout << "  (Dek masih kosong)\n\n";
+                } else {
+                    vector<string> hIsi = {"ID", "Nama Kartu", "Qty"};
+                    vector<vector<string>> rIsi;
+                    for (auto& dc : deckTerpilih->cards) {
+                        string nama = getNamaKartu(plants, zombies, dc.cardId, deckTerpilih->isPlant);
+                        rIsi.push_back({to_string(dc.cardId), nama, to_string(dc.qty)});
+                    }
+                    printTable(hIsi, rIsi);
+                    cout << "\n";
+                }
+
+                cout << "=== KARTU TERSEDIA ===\n";
                 vector<string> hK = {"No", "Nama Kartu", "Class", "Cost"};
                 vector<vector<string>> rK;
                 for (int i = 0; i < (int)tersedia.size(); i++) {
