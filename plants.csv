@@ -25,4 +25,6 @@ id,name,rarity,cardSet,cost,class,category,tribes,strength,health,traits,effects
 24,solar-winds,super-rare,galactic,3,solar,environment,-,-,-,-,make,end of turn: make a sunflower here
 25,aloesaurus,legendary,triassic,5,solar,fighter,cactus|animal,4,-,-,dino-roar|heal,dino-roar: heal all plants and plant hero for 1
 26,e,rare,colossal,3,guardian,trick,-,2,-,-,-,-
-27,g,uncommon,premium,2,kabloom,trick,mushroom,2,-,-,-,-
+27,peashooter,common,none,1,mega-grow,fighter,pea,2,-,-,draw,dino roar: get +1/+1
+28,r,common,none,1,guardian,fighter,-,1,-,-,-,t
+29,ucup,rare,premium,3,kabloom,trick,bean,-,-,-,-,yah
