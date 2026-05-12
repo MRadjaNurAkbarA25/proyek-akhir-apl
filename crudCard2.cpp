@@ -463,12 +463,15 @@ if (!input.empty()) {
     cout << "  Cost saat ini: " << c.cost << "\n";
     int val = readInt("  Cost baru (-999 = skip): ");
     if (val != -999) c.cost = val;
+
     cout << "  Strength saat ini: " << (c.strength == -1 ? "-" : to_string(c.strength)) << "\n";
     val = readInt("  Strength baru (-999 = skip, -1 = tidak ada): ");
     if (val != -999) c.strength = val;
+
     cout << "  Health saat ini: " << (c.health == -1 ? "-" : to_string(c.health)) << "\n";
     val = readInt("  Health baru (-999 = skip, -1 = tidak ada): ");
     if (val != -999) c.health = val;
+    
     cout << "  Traits saat ini: ";
     for (int j = 0; j < (int)c.tags.traits.size(); j++)
         cout << (j ? "|" : "") << c.tags.traits[j];
@@ -485,6 +488,7 @@ if (!input.empty()) {
         traits.insert(traits.end(), globalTraits.begin(), globalTraits.end());
         c.tags.traits = traits;
     }
+    
     cout << "  Effects saat ini: ";
     for (int j = 0; j < (int)c.tags.effects.size(); j++)
         cout << (j ? "|" : "") << c.tags.effects[j];

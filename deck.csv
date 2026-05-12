@@ -3,4 +3,4 @@ id, ownerId, deckName, isPlantDeck, heroId, status
 2,3,Super Brainz Deck 1,0,12,final
 3,2,r,1,9,Draft
 4,2,r,1,1,Draft
-5,2,r,0,14,Draft
+5,2,r,0,14,draft

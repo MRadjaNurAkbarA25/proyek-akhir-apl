@@ -255,43 +255,73 @@ void hapusKartuDariDek(Deck* d, vector<Card>& plants, vector<Card>& zombies) {
         return;
     }
 
-    // clear();
-    cout << "=== HAPUS KARTU DARI DEK: " << d->deckName << " ===\n";
-    
-    // Tampilkan isi dek saat ini
-    vector<string> hKartu = {"No", "Nama Kartu", "Qty"};
-    vector<vector<string>> rKartu;
-    for (int i = 0; i < (int)d->cards.size(); i++) {
-        string nama = getNamaKartu(plants, zombies, d->cards[i].cardId, d->isPlant);
-        rKartu.push_back({
-            to_string(i + 1),
-            nama,
-            to_string(d->cards[i].qty)
-        });
+    while (true) {
+        clear();
+        cout << "=== HAPUS KARTU DARI DEK: " << d->deckName << " ===\n";
+        
+        // Tampilkan isi dek saat ini
+        vector<string> hKartu = {"No", "Nama Kartu", "Qty"};
+        vector<vector<string>> rKartu;
+        for (int i = 0; i < (int)d->cards.size(); i++) {
+            string nama = getNamaKartu(plants, zombies, d->cards[i].cardId, d->isPlant);
+            rKartu.push_back({
+                to_string(i + 1),
+                nama,
+                to_string(d->cards[i].qty)
+            });
+        }
+        printTable(hKartu, rKartu);
+
+        cout << "  [0] Batal\n";
+        int pilih = readInt("  Pilih nomor kartu yang ingin dihapus: ");
+        
+        if (pilih == 0) return;
+        if (pilih < 1 || pilih > (int)d->cards.size()) {
+            cout << "  [!] Pilihan tidak valid.\n";
+            tungguEnter();
+            continue;
+        }
+
+        int indexKartu = pilih - 1;
+        string namaKartu = getNamaKartu(plants, zombies, d->cards[indexKartu].cardId, d->isPlant);
+
+        while (true) {
+
+            clear();
+            int Qty_Sekarang = d->cards[indexKartu].qty;
+            cout << "\n Kartu : " << namaKartu << " (Jumlah saat ini : " << Qty_Sekarang << " ) \n";
+            int Jumlah_Hapus = readInt("Masukan jumlah kartu yang ingin dihapus (0 = Batal) : ");
+
+            if (Jumlah_Hapus == 0) break;
+
+            if (Jumlah_Hapus < 0 || Jumlah_Hapus > Qty_Sekarang) {
+                cout << "[!] Jumlah tidak valid.\n";
+                system("pause");
+                continue;;
+            }
+
+            if (Jumlah_Hapus == Qty_Sekarang) {
+                d->cards.erase(d->cards.begin() + indexKartu);
+
+            } else {
+                clear();
+                d->cards[indexKartu].qty -= Jumlah_Hapus;
+                cout << " [-] Qty : " << namaKartu << " dihapus sebanyak : " << Jumlah_Hapus << ".\n";
+            }
+
+            // Hitung ulang total kartu untuk update status
+            int total = 0;
+            for (auto& c : d->cards) total += c.qty;
+            d->status = (total == 40) ? "final" : "draft";
+
+            clear();
+            cout << "Status dek saat ini : " << d->status << " Total : " << total << "/40) \n";
+            system("pause");
+            break;
+        }
+        
+        if (d->cards.empty()) return;
     }
-    printTable(hKartu, rKartu);
-
-    cout << "  [0] Batal\n";
-    int pilih = readInt("  Pilih nomor kartu yang ingin dihapus: ");
-    
-    if (pilih == 0) return;
-    if (pilih < 1 || pilih > (int)d->cards.size()) {
-        cout << "  [!] Pilihan tidak valid.\n";
-        tungguEnter();
-        return;
-    }
-
-    int indexHapus = pilih - 1;
-    string namaTerhapus = getNamaKartu(plants, zombies, d->cards[indexHapus].cardId, d->isPlant);
-    
-    d->cards.erase(d->cards.begin() + indexHapus);
-
-    // Hitung ulang total kartu untuk update status
-    int total = 0;
-    for (auto& c : d->cards) total += c.qty;
-    d->status = (total == 40) ? "final" : "draft";
-
-    cout << "  [-] " << namaTerhapus << " berhasil dihapus dari dek.\n";
 }
 
 void editDek(vector<Deck>& decks, vector<Hero>& heroes,
@@ -351,7 +381,7 @@ void editDek(vector<Deck>& decks, vector<Hero>& heroes,
     // Menu Edit
     clear();
     cout << "=== EDIT DEK: " << deckTerpilih->deckName << " ===\n";
-    string opsi[] = {"Ubah Nama Dek","Ubah Isi Kartu","Hapus Isi Kartu","Kembali"};
+    string opsi[] = {"Ubah Nama Dek","Tambah Kartu","Hapus Kartu","Kembali"};
     int subPilih = tampilMenu("", opsi, 4);
     switch(subPilih) {
         case 1: {
