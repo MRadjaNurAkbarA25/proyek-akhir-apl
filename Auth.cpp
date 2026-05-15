@@ -128,7 +128,7 @@ void Sign_In () {
     }
 
     if (Ada) {
-        cout << "Username sudah ada !" << endl;
+        cout << "[!] Username sudah ada !" << endl;
         system("pause");
 
     } else {
