@@ -84,6 +84,15 @@ void Simpan_Akun(const string& filename, const vector<Akun>& Regis_Akun) {
     file.close();
 }
 
+bool Is_Alpha_Numeric(string str) {
+    for (char c : str) {
+        if (!isalnum(c)) {
+            return false;
+        }
+    }
+    return true;
+}
+
 void Sign_In () {
     string New_User, New_Pw;
     bool Ada = false;
@@ -97,6 +106,18 @@ void Sign_In () {
     getline(cin, New_User);
     cout << "Password Baru : " << endl;
     getline(cin, New_Pw);
+
+    if (!Is_Alpha_Numeric(New_User) || !Is_Alpha_Numeric(New_Pw)) {
+        cout << "\n [!] Inputan tidak boleh simbol ! \n ";
+        system("pause");
+        return;
+    }
+    
+    if (New_User.empty() || New_Pw.empty()) {
+        cout << "\n [!] Inputan tidak boleh kosong ! \n ";
+        system("pause");
+        return;
+    }
 
 
     for (const auto& akun : List_Akun) {
