@@ -143,7 +143,8 @@ int Rarity (string r) {
     if (r == "uncommon") return 2;
     if (r == "rare") return 3;
     if (r == "super-rare") return 4;
-    if (r == "legendary") return 5;
+    if (r == "event") return 5;
+    if (r == "legendary") return 6;
 
     return 0;
 }
@@ -221,11 +222,11 @@ void Quick_Sort_Class_Asc(vector<Card>& Cards, int low, int high) {
     int i = low, j = high ;
 
     while (i <= j) {
-        while (Cards[i].cardClass > pivot) {
+        while (Cards[i].cardClass < pivot) {
             i++ ;
         }
 
-        while (Cards[j].cardClass < pivot) {
+        while (Cards[j].cardClass > pivot) {
             j-- ;
         }
 
@@ -258,54 +259,80 @@ void menuLihat() {
             continue;
         }
 
-        clear();
-        string Opsi_Tim[] = {"Plants", "Zombie", "Kembali"};
-        int Pilihan_Tim = tampilMenu("Pilih Tim :", Opsi_Tim, 3);
+        while (true) {
+            clear();
+            string Opsi_Tim[] = {"Plants", "Zombie", "Kembali"};
+            int Pilihan_Tim = tampilMenu("Pilih Tim :", Opsi_Tim, 3);
 
-        if (Pilihan_Tim == 3) continue;
+            if (Pilihan_Tim == 3) continue;
 
-        string filename = (Pilihan_Tim == 1) ? "plants.csv" : "zombies.csv";
-        string tim     = (Pilihan_Tim == 1) ? "plant"      : "zombie";
-        vector<Card> cards = loadCardCSV(filename, tim);
+            string filename = (Pilihan_Tim == 1) ? "plants.csv" : "zombies.csv";
+            string tim     = (Pilihan_Tim == 1) ? "plant"      : "zombie";
+            vector<Card> cards = loadCardCSV(filename, tim);
 
-        if (cards.empty()) {
-            cout << " Tidak ada data kartu ! \n";
-            system("pause");
-            continue;
+            if (cards.empty()) {
+                cout << " Tidak ada data kartu ! \n";
+                system("pause");
+                continue;
+            }
+
+            while (true) {
+                clear();
+                string Opsi_Sort[] = {"Cost", "Class", "Rarity", "Kembali"};
+                int Pilihan_Sort = tampilMenu("Sorting ASC berdasarkan : ", Opsi_Sort, 4);
+
+                if (Pilihan_Sort == 4) return;
+
+                switch (Pilihan_Sort) {
+                    case 1 : 
+                        Sort_Selection_Cost_Asc(cards); 
+                        break;
+                    
+                    case 2 : 
+                        Quick_Sort_Class_Asc(cards, 0, cards.size() - 1); 
+                        break;
+
+                    case 3 : 
+                    Merge_Sort_Rarity(cards, 0, cards.size() - 1); 
+                    break;
+                }
+
+                clear();
+                cout << "Hasil Sorting " << (Pilihan_Tim == 1 ? "plant" : "zombie") << "(ASC) \n";
+
+                vector<string> header = {"ID", "Nama", "Class", "Cost", "Rarity"};
+                vector <vector<string>> rows;
+
+                for (auto& c : cards) {
+                    rows.push_back({to_string(c.id), c.name, c.cardClass, to_string(c.cost), c.rarity});
+                }
+
+                printTable(header, rows);
+                
+                int Pilih_Kartu_Detail = readInt ("\n Pilih ID kartu untuk lihat detail (0 = kembali) : ");
+
+                if (Pilih_Kartu_Detail != 0) {
+                    bool Ketemu = false;
+
+                    for (auto& c : cards) {
+                        if (c.id == Pilih_Kartu_Detail) {
+                            clear();
+                            printCardDetail(c);
+                            system("pause");
+                            Ketemu = true;
+                            break;
+                        }
+                    }
+
+                    if (!Ketemu) {
+                        cout << "ID tidak ditemukan. \n";
+                        system("pause");
+                    }
+                } else {
+                    continue;
+                }
+            }
         }
-
-        clear();
-        string Opsi_Sort[] = {"Cost", "Class", "Rarity", "Kembali"};
-        int Pilihan_Sort = tampilMenu("Sorting ASC berdasarkan : ", Opsi_Sort, 4);
-
-        if (Pilihan_Sort == 4) return;
-
-        switch (Pilihan_Sort) {
-            case 1 : 
-                Sort_Selection_Cost_Asc(cards); 
-                break;
-            
-            case 2 : 
-                Quick_Sort_Class_Asc(cards, 0, cards.size() - 1); 
-                break;
-
-            case 3 : 
-            Merge_Sort_Rarity(cards, 0, cards.size() - 1); 
-            break;
-        }
-
-        clear();
-        cout << "Hasil Sorting " << (Pilihan_Tim == 1 ? "plant" : "zombie") << "(ASC) \n";
-
-        vector<string> header = {"ID", "Nama", "Class", "Cost", "Rarity"};
-        vector <vector<string>> rows;
-
-        for (auto& c : cards) {
-            rows.push_back({to_string(c.id), c.name, c.cardClass, to_string(c.cost), c.rarity});
-        }
-
-        printTable(header, rows);
-        system("pause");
     }
 }
 
@@ -351,6 +378,7 @@ if (namaSudahAda) {
     c.cost     = readInt("  Cost     : ");
     c.strength = readInt("  Strength (-1 jika tidak ada): ");
     c.health   = readInt("  Health   (-1 jika tidak ada): ");
+    
     if (pilihanTeam == 1)
         c.tags.tribes = tampilMenuMulti("  Pilih Tribes (0 = selesai):", PLANT_TRIBES, 20);
     else
@@ -372,6 +400,7 @@ if (namaSudahAda) {
     cout << "  [OK] Kartu berhasil ditambahkan!\n";
     tungguEnter();
 }
+
 void menuUpdate() {
     clear();
     string opsiTeam[] = {"Plant", "Zombie", "Kembali"};
@@ -554,11 +583,8 @@ void Menu_Cari_Nama (vector<Card>& Cards, int Panjang) {
         system("cls") ;
         cout << "Nama ditemukan !" << endl ;
         cout << "------------------------------" << endl ;
-        cout << " ID : " << Cards[Hasil].id << endl ;
-        cout << " Nama : " << Cards[Hasil].name << endl ;
-        cout << " Rarity : " <<Cards[Hasil].rarity << endl ;
-        cout << " Class : " << Cards[Hasil].cardClass << endl ;
-        cout << " Kategori : " << Cards[Hasil].category << endl ;
+
+        printCardDetail(Cards[Hasil]);
 
         system("pause") ;
 
