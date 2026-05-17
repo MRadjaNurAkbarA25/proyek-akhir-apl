@@ -397,6 +397,11 @@ void editDek(vector<Deck>& decks, vector<Hero>& heroes,
                 totalBaru += c.qty;
             }
 
+            if (totalBaru >= 40) {
+                cout << "  [!] Dek sudah penuh (40/40). Tidak bisa tambah kartu lagi!\n";
+                break;
+            }
+
             // Ambil Hero untuk filter class kembali
             Hero* heroRef = nullptr;
             for(auto& h : heroes) if(h.id == deckTerpilih->heroId) heroRef = &h;
@@ -483,7 +488,7 @@ void editDek(vector<Deck>& decks, vector<Hero>& heroes,
                 
                 tungguEnter();
             }
-            deckTerpilih->status = (totalBaru == 40) ? "Ready" : "Draft";
+            deckTerpilih->status = (totalBaru == 40) ? "final" : "draft";
             cout << "  [+] Isi dek berhasil diperbarui!\n";
             break;
         }
