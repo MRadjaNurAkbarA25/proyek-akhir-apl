@@ -378,27 +378,58 @@ if (namaSudahAda) {
     c.cost     = readInt("  Cost     : ");
     c.strength = readInt("  Strength (-1 jika tidak ada): ");
     c.health   = readInt("  Health   (-1 jika tidak ada): ");
-    
-    if (pilihanTeam == 1)
-        c.tags.tribes = tampilMenuMulti("  Pilih Tribes (0 = selesai):", PLANT_TRIBES, 20);
-    else
-        c.tags.tribes = tampilMenuMulti("  Pilih Tribes (0 = selesai):", ZOMBIE_TRIBES, 15);
-    vector<string> traits;
-    if (pilihanTeam == 1)
-        traits = tampilMenuMulti("  Pilih Traits (0 = selesai):", PLANT_TRAITS, 2);
-    else
-        traits = tampilMenuMulti("  Pilih Traits (0 = selesai):", ZOMBIE_TRAITS, 4);
-    vector<string> globalTraits = tampilMenuMulti("  Pilih Global Traits (0 = selesai):", GLOBAL_TRAITS, 8);
-    traits.insert(traits.end(), globalTraits.begin(), globalTraits.end());
-    c.tags.traits = traits;
-    c.tags.effects = tampilMenuMulti("  Pilih Effects (0 = selesai):", EFFECTS, 15);
-    c.tags.desc = readString("  Deskripsi (- jika tidak ada): ");
-    if (c.tags.desc == "-") c.tags.desc = "";
-    cards.push_back(c);
-    saveCardCSV(filename, cards);
-    clear();
-    cout << "  [OK] Kartu berhasil ditambahkan!\n";
-    tungguEnter();
+
+    while (true) {
+        if (pilihanTeam == 1)
+            c.tags.tribes = tampilMenuMulti("  Pilih Tribes (MAX 2, 0 = selesai):", PLANT_TRIBES, 20);
+        else
+            c.tags.tribes = tampilMenuMulti("  Pilih Tribes (MAX 2, 0 = selesai):", ZOMBIE_TRIBES, 15);
+
+        if (c.tags.tribes.size() <= 2) {
+            break;
+        } else {
+            cout << "[!] Total maksimal Tribes hanya 2 .\n";
+            tungguEnter();
+        }
+    }
+
+    while (true) {
+        vector<string> traits;
+        if (pilihanTeam == 1)
+            traits = tampilMenuMulti("  Pilih Traits (MAX 5, 0 = selesai):", PLANT_TRAITS, 2);
+        else
+            traits = tampilMenuMulti("  Pilih Traits (MAX 5, 0 = selesai):", ZOMBIE_TRAITS, 4);
+
+        vector<string> globalTraits = tampilMenuMulti("  Pilih Global Traits (MAX 5, 0 = selesai):", GLOBAL_TRAITS, 8);
+        traits.insert(traits.end(), globalTraits.begin(), globalTraits.end());
+
+        if (traits.size() <= 5) {
+            c.tags.traits = traits;
+            break;
+        } else {
+            cout << "[!] Total maksimal Traits hanya 5 .\n";
+            tungguEnter();
+        }
+    }
+
+    while (true) {
+        c.tags.effects = tampilMenuMulti("  Pilih Effects (MAX 5, 0 = selesai) :", EFFECTS, 15);
+
+        if (c.tags.effects.size() <= 5) {
+            break;
+        } else {
+            cout << "[!] Total maksimal Effects hanya 5 .\n";
+            tungguEnter();
+        }
+
+        c.tags.desc = readString("  Deskripsi (- jika tidak ada): ");
+        if (c.tags.desc == "-") c.tags.desc = "";
+        cards.push_back(c);
+        saveCardCSV(filename, cards);
+        clear();
+        cout << "  [OK] Kartu berhasil ditambahkan!\n";
+        tungguEnter();
+    }
 }
 
 void menuUpdate() {
@@ -463,12 +494,15 @@ if (!input.empty()) {
     cout << "  Cost saat ini: " << c.cost << "\n";
     int val = readInt("  Cost baru (-999 = skip): ");
     if (val != -999) c.cost = val;
+
     cout << "  Strength saat ini: " << (c.strength == -1 ? "-" : to_string(c.strength)) << "\n";
     val = readInt("  Strength baru (-999 = skip, -1 = tidak ada): ");
     if (val != -999) c.strength = val;
+
     cout << "  Health saat ini: " << (c.health == -1 ? "-" : to_string(c.health)) << "\n";
     val = readInt("  Health baru (-999 = skip, -1 = tidak ada): ");
     if (val != -999) c.health = val;
+    
     cout << "  Traits saat ini: ";
     for (int j = 0; j < (int)c.tags.traits.size(); j++)
         cout << (j ? "|" : "") << c.tags.traits[j];
@@ -476,25 +510,51 @@ if (!input.empty()) {
     string opsiUbah[] = {"Ya", "Tidak"};
     int ubahTraits = tampilMenu("  Ubah Traits?", opsiUbah, 2);
     if (ubahTraits == 1) {
-        vector<string> traits;
-        if (pilihanTeam == 1)
-            traits = tampilMenuMulti("  Pilih Traits baru (0 = selesai):", PLANT_TRAITS, 2);
-        else
-            traits = tampilMenuMulti("  Pilih Traits baru (0 = selesai):", ZOMBIE_TRAITS, 4);
-        vector<string> globalTraits = tampilMenuMulti("  Pilih Global Traits baru (0 = selesai):", GLOBAL_TRAITS, 8);
-        traits.insert(traits.end(), globalTraits.begin(), globalTraits.end());
-        c.tags.traits = traits;
+
+        while (true) {
+            vector<string> traits;
+            if (pilihanTeam == 1) {
+                traits = tampilMenuMulti("  Pilih Traits baru (MAX 5, 0 = selesai):", PLANT_TRAITS, 2);
+            } else {
+                traits = tampilMenuMulti("  Pilih Traits baru (MAX 5, 0 = selesai):", ZOMBIE_TRAITS, 4);
+            vector<string> globalTraits = tampilMenuMulti("  Pilih Global Traits baru (MAX 5, 0 = selesai) :", GLOBAL_TRAITS, 8);
+            traits.insert(traits.end(), globalTraits.begin(), globalTraits.end());
+            }
+            
+            if (traits.size() <= 5) {
+                c.tags.traits = traits;
+                break;
+            } else {
+                cout << "[!] Total maksimal Traits hanya 5 .\n";
+                tungguEnter();
+            }
+        }
     }
+    
     cout << "  Effects saat ini: ";
     for (int j = 0; j < (int)c.tags.effects.size(); j++)
         cout << (j ? "|" : "") << c.tags.effects[j];
     cout << "\n";
     int ubahEffects = tampilMenu("  Ubah Effects?", opsiUbah, 2);
-    if (ubahEffects == 1)
-        c.tags.effects = tampilMenuMulti("  Pilih Effects baru (0 = selesai):", EFFECTS, 15);
-    cout << "  Deskripsi saat ini: " << (c.tags.desc.empty() ? "-" : c.tags.desc) << "\n";
-    cout << "  Deskripsi baru (Enter = skip, - = hapus): ";
-    getline(cin, input);
+
+    if (ubahEffects == 1) {
+
+        while (true) {
+            vector<string> effects = tampilMenuMulti("  Pilih Effects baru (MAX 5, 0 = selesai) :", EFFECTS, 15);
+            cout << "  Deskripsi saat ini: " << (c.tags.desc.empty() ? "-" : c.tags.desc) << "\n";
+            cout << "  Deskripsi baru (Enter = skip, - = hapus): ";
+            getline(cin, input);
+
+            if (effects.size() <= 5) {
+                c.tags.effects = effects;
+                break;
+            } else {
+                cout << "[!] Total maksimal Effects hanya 5 .\n";
+                tungguEnter();
+            }
+        }
+    }
+
     if (input == "-")        c.tags.desc = "";
     else if (!input.empty()) c.tags.desc = input;
     saveCardCSV(filename, cards);
