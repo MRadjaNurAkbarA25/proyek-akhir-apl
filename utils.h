@@ -14,5 +14,6 @@ void clear();
 int tampilMenu(const string& judul, const string opsi[], int jumlah);
 vector<string> tampilMenuMulti(const string& judul, const string opsi[], int jumlah);
 void printTable(vector<string> header, vector<vector<string>> rows);
+string toLower(string str);
 
 #endif

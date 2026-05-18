@@ -505,6 +505,7 @@ void editDek(vector<Deck>& decks, vector<Hero>& heroes,
 }
 
 void hapusDek(vector<Deck>& decks, int ownerId) {
+    clear();
     decks = loadDeckCSV("deck.csv");
     loadDeckCardsCSV("deckCard.csv", decks);
 

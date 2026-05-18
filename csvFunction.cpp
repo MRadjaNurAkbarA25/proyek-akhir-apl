@@ -1,4 +1,5 @@
 #include "csv.h"
+#include "utils.h"
 #include <iostream>
 #include <fstream>
 #include <sstream>
@@ -100,7 +101,7 @@ vector<Card> loadCardCSV(const string& filename, const string& team) {
 
         Card c;
         c.id        = autoID++;
-        c.name      = f[1];
+        c.name      = toLower(f[1]);
         c.rarity    = f[2];
         c.cardSet   = f[3];
         c.cost      = (f[4] == "-" ? -1 : stoi(f[4]));
