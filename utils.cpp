@@ -1,6 +1,8 @@
 #include "utils.h"
 #include <iostream>
 #include <limits>
+#include <algorithm>
+#include <cctype>
 using namespace std;
 
 void reassignIDs(Superpower cards[], int count) {
@@ -132,4 +134,10 @@ void printTable(vector<string> header, vector<vector<string>> rows) {
     garis();
     for (auto& row : rows) cetakBaris(row);
     garis();
+}
+
+string toLower(string str) {
+    transform(str.begin(), str.end(), str.begin(), 
+              [](unsigned char c) { return tolower(c); });
+    return str;
 }

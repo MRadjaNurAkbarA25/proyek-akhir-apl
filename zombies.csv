@@ -24,3 +24,4 @@ id,name,rarity,cardSet,cost,class,category,tribes,strength,health,traits,effects
 23,laser-base-alpha,super-rare,galactic,3,sneaky,environment,science,-,-,strikethrough|deadly,-,zombies here get deadly and strikethrough
 24,zombot-plank-walker,legendary,premium,8,sneaky,fighter,science|pirate,6,-,strikethrough,make,when played: make two other random pirates in random lanes
 25,barrel-of-barrels,uncommon,colossal,2,sneaky,trick,barrel,-,-,deadly,conjure,a zombie becomes deadly. conjure a barrel
+26,imposter,event,-,1,sneaky,fighter,mustache|imp,2,1,-,conjure,when destroyed: conjure a 1-cost imp and it gains a mustache
